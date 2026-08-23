@@ -182,12 +182,14 @@ A three-script colour-theming utility. Used mainly to test whether the ghost rul
 
 A Python and React assessment tool, 76 tracked files, cloned at a pinned commit and never updated. **The only territory here that is not the author's own**, and so the only test of whether the rules survive ground with no memory attached. Walked four times as the rules changed. Two of the current rules came out of it, and the fourth walk is the closest thing in this project to a controlled experiment.
 
-| Walk | Rules at the time | Cards | What it showed |
+| Walk | Rules at the time | Cards | Result |
 |---|---|---|---|
-| 1 | before *card the change* | 5 | All correct, collectively unusable — every front-door question was a sub-question of one job, so a reader adding a provider had to open all five. This is where *card the change, not the parts of the change* comes from. |
-| 2 | after it | 1 | First map to stay inside its own load budget on unfamiliar territory, and it found three things the five-card version had missed. |
-| 3 | after entry-file diligence | 1 | Re-derived walk 2's central finding independently, from the live files, before opening either prior catalog. Declined to card a false architecture claim in the entry file — correctly, as scope — which exposed a contradiction in that rule and got it fixed. |
-| 4 | after the reader became a role and the triangle was cut | 2 | Below. |
+| 1 | before *card the change* | 5 | All correct, collectively unusable |
+| 2 | after it | 1 | First walk to stay inside its own budget here |
+| 3 | after entry-file diligence | 1 | Re-derived walk 2 independently, from the live files |
+| 4 | reader as a role, triangle cut | 2 | Two doors, each answerable alone |
+
+Walk 1's five cards were each true, and no single one answered the question a reader actually arrived with — every front-door question was a sub-question of one job, so adding a provider meant opening all five. That is where *card the change, not the parts of the change* comes from. Walk 2 dropped to one card and found three things the five-card version had missed. Walk 3 re-derived walk 2's central finding before opening either prior catalog, and declined to card a false architecture claim in the entry file — correctly, as scope — which exposed a contradiction in that rule and got it fixed.
 
 **The fourth walk is why this section exists.** Walk 3 was right to leave the entry file's architecture claim uncarded: under *one reader, one job* it sat off the reader's path. Under *the reader is a role*, it is in scope — and walk 4 carded it as a ghost, with the search behind it. Same territory, same reader's question, same tool. The rule change moved a real finding from correctly-excluded to carded, and produced two cards behind two doors: neither the five-card mush nor the single card only one job could use.
 
