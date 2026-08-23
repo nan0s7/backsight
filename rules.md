@@ -61,6 +61,8 @@ Two things count as candidates that a listing will not show you:
 
 Where the contents are mixed, say what the mix is. That sentence is usually worth more than the count was.
 
+**Say what unit you counted.** Lines, matches, files, occurrences — one grep answers all four differently, and a number without its unit is checked against whichever one the reader assumes. Six lines and eight occurrences were the same search.
+
 ---
 
 ## Pass 2 — Status
@@ -161,12 +163,26 @@ Prefer a worked change over an abstract one. "If you rename this" produces a con
 
 **Read `reference/card-types.md` and `reference/walk-order.md` before starting this pass, and read `examples.md` before writing the catalog.**
 
+### The arrivals list, before any of it
+
+**Before writing the catalog, list the questions the Pass 0 reader actually arrives with — five to ten, in their words, written without looking at the card list.** Then route each one to a card.
+
+Do this first and separately, because a front door written from the card list is a table of contents with question marks. You have five cards, so you write five questions, one per card, and every one of them is answerable — because you reverse-engineered it from the answer. The map then fails the first arrival that was not on that list, and it fails it by routing nowhere, which is the failure that makes a reader open everything.
+
+Routing an independent list tells you three things the card-derived one cannot:
+
+- **An arrival that routes to no card** is a missing card or a boundary. Decide which. If it is a boundary, it belongs in *What is not carded*, not in silence.
+- **An arrival that needs two cards** is one noun carved wrongly. Merge them, per *card the change* below.
+- **A card no arrival reaches** is a card nobody asked for. Cut it, or find the arrival you missed.
+
+**One door per card, and exactly one, is the tell that this step was skipped.** Real arrivals do not distribute evenly over an inventory: some cards earn two doors, some earn none, and the ones that earn none are usually the ones you wrote because the folder was there.
+
 ### The catalog first
 
 `catalog.md` is written before any card. It carries:
 
 - **The front door** — the question a reader most likely arrives with, and which card answers it. Phrase it as the reader's question, not as a category heading.
-- **One line per card.** Name, status, one clause on what it is. Not a summary of the card.
+- **One line per card.** Name, status, and one clause on **what the card decides for you** — not what the noun is. A reader scanning this list is asking *is my answer in there*, and an identity phrase cannot answer that: *"the script's own filename, load-bearing in four places"* names the noun and routes nobody, while *"how it finds itself, kills duplicates, and relaunches"* tells a reader holding a concurrency question that they have arrived. Not a summary of the card.
 - **The load budget**, stated as an instruction and **bounded in both directions**: read this catalog, then one card, and stop.
 
   Inward, that means no second card. Outward, it means **nothing that is not the map, and that includes the territory itself.** Not the source files, not the territory's planning documents, not the author's notes or specs about it, not agent instructions in a parent folder. Name the territory explicitly: a budget that lists only documents *about* the place reads as leave granted to go and read the place. Those exist, they are easy to find, they read as helpful context, and they are the fastest way to end up answering from a stale plan instead of the survey. A budget stated only against the `objects/` folder does not stop any of it.
@@ -234,7 +250,7 @@ Verify the bar directly rather than assuming it.
 
    *Land*, not *reach*. Arriving at the correct card with only part of the answer in it is a failure of this test, not a pass. There are two ways to fail it, they have different fixes, and both must be checked:
 
-   - **Unreachable.** The catalog does not route the question to a card at all, or routes it ambiguously. Fix the catalog.
+   - **Unreachable.** The catalog does not route the question to a card at all, or routes it ambiguously. **Do not simply add a door for the question you just asked.** That patches this one map and leaves the next one identical — and it is the same reverse-engineering the arrivals list exists to prevent. Go back to the arrivals list: the question you tested was missing from it, and *what else is missing* is the finding.
    - **Insufficient.** The question routes correctly and one card does not answer it. **Those cards are one noun carved wrongly** — merge them. Do not add a routing line telling the reader to read several; that is the failure the budget exists to prevent, dressed as navigation.
 
    The second failure is the one a map passes by accident. A set of cards can be individually correct, correctly reachable, and collectively unusable, because every front-door question is a sub-question of one job nobody can do from one card.
