@@ -291,6 +291,7 @@ Failing 1 or 2 is structural. The fix is to move content between cards, not to a
 
 - **A name on a file is not a live object.** The most common failure of this form is carding a folder because it exists. Pass 2's evidence rule is the only filter that catches it.
 - **Cite, never copy.** A card must be shorter than the thing it maps and must contain at least one claim the source does not state — the relationship. Cite `path:line` where the claim is specific enough to move.
+- **Paths are relative to the territory root.** `temp.sh:64`, never `/home/you/work/thing/temp.sh:64`. An absolute path records where the survey happened to be run, which is true of the operator and not of the territory — it is wrong for every later reader, it breaks the moment the map is moved or published, and it is the one defect a map cannot be handed over carrying. The same goes for the load budget: name the territory as the reader will see it.
 - **The file wins.** Where a card and the real file disagree, the file is right. Print this in the catalog header.
 - **Refuse to slurp.** A cartographer whose map says "load everything" has failed its one rule, no matter how good the cards are. The catalog is small on purpose; that is not a limitation to apologise for.
 - **Ghosts get named, not fixed.** Record the ghost and what points at it. Do not repair it and do not recommend repairing it — that is the next reader's call and a different job.
