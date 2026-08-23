@@ -40,7 +40,15 @@ Count files per region and record the counts. They are the first evidence about 
 
 Also stop if asked to map a methodology, a skill folder, or this folder. State the reason and offer nothing else.
 
-Nothing is written yet.
+### The arrivals list
+
+**Write down the questions the reader arrives with — five to ten, in their words — now, before you have opened anything.**
+
+This is the only point in the procedure where that list can be honest. From Pass 1 onward you know what is in the territory, and a list written then is derived from the inventory: you will produce one question per noun you found, each answerable because you already knew the answer when you wrote the question. Written here, from the reader alone, it describes what someone wants instead of what you happen to have.
+
+Keep it. Pass 4 routes it, Pass 5 tests against it. **Do not revise it later to match the cards.** Where a question ends up with no card, that is the finding.
+
+Nothing else is written yet.
 
 ---
 
@@ -163,19 +171,17 @@ Prefer a worked change over an abstract one. "If you rename this" produces a con
 
 **Read `reference/card-types.md` and `reference/walk-order.md` before starting this pass, and read `examples.md` before writing the catalog.**
 
-### The arrivals list, before any of it
+### Route the arrivals list
 
-**Before writing the catalog, list the questions the Pass 0 reader actually arrives with — five to ten, in their words, written without looking at the card list.** Then route each one to a card.
+**Take the arrivals list written at Pass 0 — before you had opened anything — and route each question to one card. Do not write a new list here.** A list written at this point is derived from the nouns you now know: five cards produce five questions, one each, every one answerable because you reverse-engineered it from its answer. The map then fails the first arrival that was not on that list, and it fails by routing nowhere, which is what makes a reader open everything.
 
-Do this first and separately, because a front door written from the card list is a table of contents with question marks. You have five cards, so you write five questions, one per card, and every one of them is answerable — because you reverse-engineered it from the answer. The map then fails the first arrival that was not on that list, and it fails it by routing nowhere, which is the failure that makes a reader open everything.
-
-Routing an independent list tells you three things the card-derived one cannot:
+Routing the Pass 0 list tells you three things a list written here cannot:
 
 - **An arrival that routes to no card** is a missing card or a boundary. Decide which. If it is a boundary, it belongs in *What is not carded*, not in silence.
 - **An arrival that needs two cards** is one noun carved wrongly. Merge them, per *card the change* below.
 - **A card no arrival reaches** is a card nobody asked for. Cut it, or find the arrival you missed.
 
-**One door per card, and exactly one, is the tell that this step was skipped.** Real arrivals do not distribute evenly over an inventory: some cards earn two doors, some earn none, and the ones that earn none are usually the ones you wrote because the folder was there.
+**One door per card, and exactly one, is the tell that the list was written here rather than at Pass 0.** Real arrivals do not distribute evenly over an inventory: some cards earn two doors, some earn none, and the ones that earn none are usually the ones you wrote because the folder was there.
 
 ### The catalog first
 
@@ -200,7 +206,11 @@ The catalog points. It stores almost nothing. If a fact lives only in the catalo
 
 One card per noun, in the fixed shape below, written into an `objects/` folder.
 
-**The map goes beside the territory: a sibling folder named `<territory>-map/`.** State the path and write there — do not ask. Ask only if that parent is not writable, or the user named a location. **Never inside the territory, and never write inside this folder** — a map written alongside the method is read with `identity.md` and `rules.md` one directory up, which loads cartography instructions before the catalog is open.
+**The map goes beside the territory: a sibling of the territory folder.** State the path and write there — do not ask. Ask only if that parent is not writable, or the user named a location.
+
+**Beside the territory means beside the territory, not in the working directory.** If the session was started somewhere else — a scratch folder, or the folder holding this method — that is not the destination, however convenient. **Never write inside the territory, and never write alongside this method folder**: a map sitting next to `identity.md` and `rules.md` gets read with cartography instructions already within reach, which is the one condition the load budget cannot survive.
+
+**Name the map from what the territory calls itself, not from the directory it is checked out in.** A working copy's folder name carries the operator's scaffolding — `-clean`, `-test`, `-old`, a branch, a date — and none of that belongs in a name a later reader inherits. A map of `nfancurve` checked out at `nfancurve-clean/` is `nfancurve-map/`. Where the two differ, the difference is a Pass 2 finding: say in the catalog which name is the thing and which is the copy.
 
 This is not tidiness. Pass 0 recorded file counts per region as evidence, and cards cite those counts. A map written inside its own subject changes the thing it just measured — and it does so silently, while the survey is still running. Every count in the map is then wrong by the size of the map.
 
@@ -246,7 +256,7 @@ Verify the bar directly rather than assuming it.
 
 1. **Two hops to the answer.** Take a question the reader will actually arrive with, **phrased by someone who has not seen the map.** From `catalog.md`, can they **land on the answer** in two reads — the catalog, then one card — and stop?
 
-   **Do not test the front door's own questions.** Those were written alongside the cards and are answerable by one card each by construction, so checking them proves nothing and passes maps that fail in use. Take what the reader will actually do, as stated at Pass 0, and ask it in their words.
+   **Do not test a question the front door already lists.** Those come from the Pass 0 arrivals list, so they are honest questions — but the catalog was built to route them, and confirming that it does proves only that you routed what you wrote down. **Take a question that is not on the list**: a real arrival that occurred to you afterwards, or one from someone who has not seen the map. What the map does with an arrival nobody anticipated is the whole of what this check measures.
 
    *Land*, not *reach*. Arriving at the correct card with only part of the answer in it is a failure of this test, not a pass. There are two ways to fail it, they have different fixes, and both must be checked:
 
@@ -262,7 +272,10 @@ Verify the bar directly rather than assuming it.
    **Start with the catalog's *What is not carded*.** Every line of it is a negative by construction, it is the first thing the reader trusts, and Pass 3 does not cover it — Pass 3 is scoped to nouns that get cards, and these are the ones that did not.
 
    Pass 3 already requires this. It is repeated here as a verification step because a rule with no check is a suggestion, and this one has been broken in a worked example that had already passed a cold read. Negatives are the easiest claim to write and the only kind a reader cannot disprove from the card itself.
-5. **The slurp check.** Search the map for any instruction to read everything, load the whole folder, or add every file to a project. There must be none.
+5. **The catalog completeness check.** Walk Pass 4's list of what the catalog carries — front door, one line per card, load budget, disagreement rule, survey date, name collisions, Pass 0 file counts, what is not carded — and confirm each is present. A rule with no check is a suggestion, and this list is long enough that its last items get dropped silently.
+
+   **Then count the doors and the cards.** If the counts are equal and every door routes to a different card, the arrivals list was written at Pass 4 from the nouns rather than at Pass 0 from the reader. Go back and route the Pass 0 list.
+6. **The slurp check.** Search the map for any instruction to read everything, load the whole folder, or add every file to a project. There must be none.
 
 Failing 1 or 2 is structural. The fix is to move content between cards, not to add a paragraph explaining the dependency.
 
