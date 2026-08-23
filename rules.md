@@ -181,7 +181,9 @@ Routing the Pass 0 list tells you three things a list written here cannot:
 - **An arrival that needs two cards** is one noun carved wrongly. Merge them, per *card the change* below.
 - **A card no arrival reaches** is a card nobody asked for. Cut it, or find the arrival you missed.
 
-**One door per card, and exactly one, is the tell that the list was written here rather than at Pass 0.** Real arrivals do not distribute evenly over an inventory: some cards earn two doors, some earn none, and the ones that earn none are usually the ones you wrote because the folder was there.
+**Where the doors and the cards are the same count and each door routes to a different card, ask whether that is the territory or the method.** On a large territory, real arrivals rarely distribute evenly over an inventory — some cards earn two doors, some earn none, and the ones that earn none are often the ones you carded because the folder was there. On a small flat one, a reader with as many questions as the territory has nouns produces the same count honestly.
+
+**So the count is a prompt to look, not a finding.** What settles it is check 1 at Pass 5: route an arrival that is not on the list.
 
 ### The catalog first
 
@@ -272,9 +274,13 @@ Verify the bar directly rather than assuming it.
    **Start with the catalog's *What is not carded*.** Every line of it is a negative by construction, it is the first thing the reader trusts, and Pass 3 does not cover it — Pass 3 is scoped to nouns that get cards, and these are the ones that did not.
 
    Pass 3 already requires this. It is repeated here as a verification step because a rule with no check is a suggestion, and this one has been broken in a worked example that had already passed a cold read. Negatives are the easiest claim to write and the only kind a reader cannot disprove from the card itself.
-5. **The catalog completeness check.** Walk Pass 4's list of what the catalog carries — front door, one line per card, load budget, disagreement rule, survey date, name collisions, Pass 0 file counts, what is not carded — and confirm each is present. A rule with no check is a suggestion, and this list is long enough that its last items get dropped silently.
+5. **The completeness check.** Walk Pass 4's list of what the catalog carries — front door, one line per card, load budget, disagreement rule, survey date, name collisions, Pass 0 file counts, what is not carded — and confirm each is present. A rule with no check is a suggestion, and this list is long enough that its last items get dropped silently.
 
-   **Then count the doors and the cards.** If the counts are equal and every door routes to a different card, the arrivals list was written at Pass 4 from the nouns rather than at Pass 0 from the reader. Go back and route the Pass 0 list.
+   **Then every card**, against the shape at Pass 4: `Status`, `Source`, `What it is`, `Why it is shaped that way`, `Hits`, `Does not hit`, `Open` — plus `What points at it` on a ghost. A missing `Does not hit` makes it a glossary entry, and Pass 3 says such a card does not ship; this is where that gets enforced rather than hoped for.
+
+   **Then the arrivals.** Every question on the Pass 0 list must appear either as a door in the front door or as an exclusion in *What is not carded*. **An arrival in neither place is one the survey quietly dropped** — and since the list was written before the territory was opened, an arrival that vanished by Pass 4 vanished because it was inconvenient, not because it stopped being a question. This is the only trace the Pass 0 list leaves, and without it nothing in the procedure can tell whether that list was ever written.
+
+   **Then count the doors and the cards.** Equal counts with one door per card are worth a second look, not a verdict — a small flat territory produces that honestly. Confirm the doors trace to the Pass 0 list rather than to the card list, and settle it with check 1 rather than with the ratio.
 6. **The slurp check.** Search the map for any instruction to read everything, load the whole folder, or add every file to a project. There must be none.
 
 Failing 1 or 2 is structural. The fix is to move content between cards, not to add a paragraph explaining the dependency.
