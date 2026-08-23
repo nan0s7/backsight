@@ -16,6 +16,8 @@ It is small on purpose. A map earns nothing on a territory you can read in one s
 
 **Map size: 97 non-blank lines against 459.** Twenty-one per cent.
 
+**This map also ships walkable**, at `nfancurve-map/` — the same catalog and the same five cards, as separate files. To test the two-hop walk, open `nfancurve-map/catalog.md` and nothing else. It is reproduced here in full because a worked map belongs in this file; the two are the same text.
+
 ## What this map does not demonstrate
 
 Two of the four types in `reference/card-types.md` have no instance here, and the reason is the territory rather than an omission. `nfancurve` is flat — six files, no shelf — so there is no region to card. Its naming collisions are all lexical, so they are catalog lines, which `card-types.md` says is the right treatment.
@@ -98,7 +100,7 @@ Source:  temp.sh:43,63-69,187 ; USAGE.md:22,32 ; README.md:3,32
 - **The script stops recognising itself, silently.** `pgrep -c temp.sh` (`:64`) returns 0 forever, so `kill_already_running` (`:63-69`), called unconditionally at `:187`, does nothing. No error, no log line. The only symptom is two copies issuing conflicting `nvidia-settings` calls at the same fans.
 - **Daemon mode launches the wrong thing.** `-D` runs `nohup sh temp.sh` (`:43`), also hardcoded. It will fail — or worse, start an *old* `temp.sh` still sitting in the directory.
 - **The documented desktop entry breaks.** `USAGE.md:22` and `:32` both specify `Exec=/home/foo/temp.sh`.
-- **The run instructions stop matching.** `README.md:3` and `:32`, `USAGE.md:14` and `:18` all name the file. Grepped both doc files for `temp.sh`: six occurrences, these four plus the two desktop-entry lines above.
+- **The run instructions stop matching.** `README.md:3` and `:32`, `USAGE.md:14` and `:18` all name the file. Grepped both doc files for `temp.sh`: six lines, these four plus the two desktop-entry lines above.
 
 **Does not hit:**
 - **`nfancurve.service`.** This is the file a reader opens first, and it is the one that does not care. Grep the unit for `temp.sh`: zero occurrences. It launches `/usr/bin/nfancurve`, a name this repository never produces. Finding nothing to change there reads as confirmation the rename is safe.
@@ -143,7 +145,7 @@ Source:  nfancurve.service:7 ; README.md:44-50
 
 **Why it is shaped that way:** A packaged layout — binary on `$PATH`, config under `/etc` — is what a unit conventionally expects. This repo does not ship that way. It ships a script and a config meant to sit together in a checkout, under whatever path you cloned to.
 
-**What points at it, and where it stops:** `README.md:44-50` says to move the unit into place and enable it, and separately says *"Ensure the script and the config paths are correct."* **It never says what correct is.** Grepping every tracked file for `/usr/bin` or `/etc/nfancurve` returns hits in the unit file and nowhere else — no install step, no build, no symlink instruction. Following the README exactly and starting the service fails at the first `ExecStart`.
+**What points at it:** `README.md:44-50` says to move the unit into place and enable it, and separately says *"Ensure the script and the config paths are correct."* **It never says what correct is.** Grepping every tracked file for `/usr/bin` or `/etc/nfancurve` returns hits in the unit file and nowhere else — no install step, no build, no symlink instruction. Following the README exactly and starting the service fails at the first `ExecStart`.
 
 **Hits:**
 - Anyone following the documented setup. The failure is at launch, which at least is loud.
@@ -168,7 +170,7 @@ Source:  temp.sh:8,40,49
 
 **Why it is shaped that way:** It is the only route by which this script runs without a real Nvidia GPU. Everything else assumes `nvidia-settings` exists and answers correctly.
 
-**What makes it a ghost:** Nothing in this territory creates, clones, or names `../nssim`. It is **absent from the script's own help text** — `:10-19` lists `-c -d -D -h -l -s -v`, not `-x` — and absent from both doc files: grepped for `nssim` and for `-x` across `README.md` and `USAGE.md`, zero hits in either. The only way to discover this flag is to read the `getopts` string or the `elif` chain directly. A reader holding only this territory cannot find out it exists, let alone what it needs.
+**What points at it:** Only the `getopts` string (`:40`) and the `elif` chain (`:49`). Nothing in this territory creates, clones, or names `../nssim`. It is **absent from the script's own help text** — `:10-19` lists `-c -d -D -h -l -s -v`, not `-x` — and absent from both doc files: grepped for `nssim` and for `-x` across `README.md` and `USAGE.md`, zero hits in either. The only way to discover this flag is to read the `getopts` string or the `elif` chain directly. A reader holding only this territory cannot find out it exists, let alone what it needs.
 
 **Hits:**
 - Running `-x` without that sibling present fails the way any missing command fails here — a bare shell "command not found", not a named error mentioning `nssim`.

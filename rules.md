@@ -171,7 +171,9 @@ Prefer a worked change over an abstract one. "If you rename this" produces a con
 
   Inward, that means no second card. Outward, it means **nothing that is not the map, and that includes the territory itself.** Not the source files, not the territory's planning documents, not the author's notes or specs about it, not agent instructions in a parent folder. Name the territory explicitly: a budget that lists only documents *about* the place reads as leave granted to go and read the place. Those exist, they are easy to find, they read as helpful context, and they are the fastest way to end up answering from a stale plan instead of the survey. A budget stated only against the `objects/` folder does not stop any of it.
 - **The disagreement rule**, in the header, not buried: where a card and the real file disagree, the file wins. **State it as precedence and say it is not an errand** — it settles a conflict the reader has already hit, and sitting near the load budget it otherwise reads as permission to go and verify.
+- **The survey date**, in the header. A `live` status is a claim about the day the survey looked, and nothing re-verifies it afterward. Without the date a reader cannot tell a fresh map from a stale one, and has no basis for weighing either.
 - **Name collisions**, resolved in one line each — what the product calls a thing versus what the files call it. A reader must be able to translate a name without opening a card.
+- **The Pass 0 file counts**, per region. Cards cite them, and a reader comparing the map against the folder needs the numbers the survey actually worked from.
 - **What is not carded**, and whether that was scope or omission. **Each exclusion is a claim and needs the same evidence as any other negative** — *this region does not touch your change* is a statement about the whole region, and it earns its place by naming the search, not by sounding reasonable. Name the regions you deliberately left out, and name the job the survey was carved around — otherwise the reader cannot tell a boundary from a gap. Say here that a question asking the map to *do* something rather than describe something is out of scope: that promise is worthless in a README the reader never opens.
 
 That last item is what makes "say so and stop" a usable instruction rather than a shrug. A reader whose question matches no card has to know whether they have hit the edge of the *territory* or the edge of the *survey* — those call for opposite responses, and without the line they cannot tell, so they read a second card hoping. Stating the boundary converts a dead end into an answer: *this map does not cover that, and here is where it stops.*
@@ -182,7 +184,7 @@ The catalog points. It stores almost nothing. If a fact lives only in the catalo
 
 One card per noun, in the fixed shape below, written into an `objects/` folder.
 
-**The map goes beside the territory: a sibling folder named `<territory>-map/`.** State the path and write there — do not ask. Ask only if that parent is not writable, or the user named a location. **Never inside the territory, and never inside this folder** — a map stored with the method is read with `identity.md` and `rules.md` one directory up, which loads cartography instructions before the catalog is open.
+**The map goes beside the territory: a sibling folder named `<territory>-map/`.** State the path and write there — do not ask. Ask only if that parent is not writable, or the user named a location. **Never inside the territory, and never write inside this folder** — a map written alongside the method is read with `identity.md` and `rules.md` one directory up, which loads cartography instructions before the catalog is open.
 
 This is not tidiness. Pass 0 recorded file counts per region as evidence, and cards cite those counts. A map written inside its own subject changes the thing it just measured — and it does so silently, while the survey is still running. Every count in the map is then wrong by the size of the map.
 
@@ -207,12 +209,14 @@ Fixed, so a reader can skim any card without learning a new format.
 Status:  live | leftover | ghost
 Source:  <path(s)>
 
-What it is:                 one or two sentences
+What it is:                 one or two sentences; more only where each carries its own cited claim
 Why it is shaped that way:  one or two sentences
 Hits:                       what moves if you change this, each with why
 Does not hit:               the wrong neighbour, and why the reader will reach for it
 Open:                       what this card is unsure of
 ```
+
+**A ghost card carries one extra field**, `What points at it`, between `Why it is shaped that way` and `Hits`. The pointer is the live half of a ghost and it is what the next reader actually encounters, so it does not belong buried inside `What it is`. No other card type adds a field.
 
 `Open` is not optional and not a formality. It is where the map admits its own edges — an inferred claim, an unverified path, a reader you could not chase down. One line. A card with nothing open is usually a card that did not look.
 
