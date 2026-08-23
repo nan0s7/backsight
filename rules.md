@@ -181,10 +181,6 @@ Routing the Pass 0 list tells you three things a list written here cannot:
 - **An arrival that needs two cards** is one noun carved wrongly. Merge them, per *card the change* below.
 - **A card no arrival reaches** is a card nobody asked for. Cut it, or find the arrival you missed.
 
-**Where the doors and the cards are the same count and each door routes to a different card, ask whether that is the territory or the method.** On a large territory, real arrivals rarely distribute evenly over an inventory — some cards earn two doors, some earn none, and the ones that earn none are often the ones you carded because the folder was there. On a small flat one, a reader with as many questions as the territory has nouns produces the same count honestly.
-
-**So the count is a prompt to look, not a finding.** What settles it is check 1 at Pass 5: route an arrival that is not on the list.
-
 ### The catalog first
 
 `catalog.md` is written before any card. It carries:
@@ -195,9 +191,7 @@ Routing the Pass 0 list tells you three things a list written here cannot:
 
   Inward, that means no second card. Outward, it means **nothing that is not the map, and that includes the territory itself.** Not the source files, not the territory's planning documents, not the author's notes or specs about it, not agent instructions in a parent folder. Name the territory explicitly: a budget that lists only documents *about* the place reads as leave granted to go and read the place. Those exist, they are easy to find, they read as helpful context, and they are the fastest way to end up answering from a stale plan instead of the survey. A budget stated only against the `objects/` folder does not stop any of it.
 - **The disagreement rule**, in the header, not buried: where a card and the real file disagree, the file wins. **State it as precedence and say it is not an errand** — it settles a conflict the reader has already hit, and sitting near the load budget it otherwise reads as permission to go and verify.
-- **The survey date**, in the header. A `live` status is a claim about the day the survey looked, and nothing re-verifies it afterward. Without the date a reader cannot tell a fresh map from a stale one, and has no basis for weighing either.
 - **Name collisions**, resolved in one line each — what the product calls a thing versus what the files call it. A reader must be able to translate a name without opening a card.
-- **The Pass 0 file counts**, per region. Cards cite them, and a reader comparing the map against the folder needs the numbers the survey actually worked from.
 - **What is not carded**, and whether that was scope or omission. **Each exclusion is a claim and needs the same evidence as any other negative** — *this region does not touch your change* is a statement about the whole region, and it earns its place by naming the search, not by sounding reasonable. Name the regions you deliberately left out, and name the job the survey was carved around — otherwise the reader cannot tell a boundary from a gap. Say here that a question asking the map to *do* something rather than describe something is out of scope: that promise is worthless in a README the reader never opens.
 
 That last item is what makes "say so and stop" a usable instruction rather than a shrug. A reader whose question matches no card has to know whether they have hit the edge of the *territory* or the edge of the *survey* — those call for opposite responses, and without the line they cannot tell, so they read a second card hoping. Stating the boundary converts a dead end into an answer: *this map does not cover that, and here is where it stops.*
@@ -274,14 +268,7 @@ Verify the bar directly rather than assuming it.
    **Start with the catalog's *What is not carded*.** Every line of it is a negative by construction, it is the first thing the reader trusts, and Pass 3 does not cover it — Pass 3 is scoped to nouns that get cards, and these are the ones that did not.
 
    Pass 3 already requires this. It is repeated here as a verification step because a rule with no check is a suggestion, and this one has been broken in a worked example that had already passed a cold read. Negatives are the easiest claim to write and the only kind a reader cannot disprove from the card itself.
-5. **The completeness check.** Walk Pass 4's list of what the catalog carries — front door, one line per card, load budget, disagreement rule, survey date, name collisions, Pass 0 file counts, what is not carded — and confirm each is present. A rule with no check is a suggestion, and this list is long enough that its last items get dropped silently.
-
-   **Then every card**, against the shape at Pass 4: `Status`, `Source`, `What it is`, `Why it is shaped that way`, `Hits`, `Does not hit`, `Open` — plus `What points at it` on a ghost. A missing `Does not hit` makes it a glossary entry, and Pass 3 says such a card does not ship; this is where that gets enforced rather than hoped for.
-
-   **Then the arrivals.** Every question on the Pass 0 list must appear either as a door in the front door or as an exclusion in *What is not carded*. **An arrival in neither place is one the survey quietly dropped** — and since the list was written before the territory was opened, an arrival that vanished by Pass 4 vanished because it was inconvenient, not because it stopped being a question. This is the only trace the Pass 0 list leaves, and without it nothing in the procedure can tell whether that list was ever written.
-
-   **Then count the doors and the cards.** Equal counts with one door per card are worth a second look, not a verdict — a small flat territory produces that honestly. Confirm the doors trace to the Pass 0 list rather than to the card list, and settle it with check 1 rather than with the ratio.
-6. **The slurp check.** Search the map for any instruction to read everything, load the whole folder, or add every file to a project. There must be none.
+5. **The slurp check.** Search the map for any instruction to read everything, load the whole folder, or add every file to a project. There must be none.
 
 Failing 1 or 2 is structural. The fix is to move content between cards, not to add a paragraph explaining the dependency.
 
