@@ -52,7 +52,7 @@ A worked pair, from the map in `examples.md`: the script finds its own running c
 
 1. **Drop this folder into a Claude project.** It is the method, not a map. The one rule above governs what comes *out* — the catalog and the cards — not what goes in here.
 2. **Give it a path and a reader.** *"Map `~/code/thing` for the next developer, who has never seen it."* The reader is a role, not a task. It will ask if you leave it out, and it will narrow the territory rather than the reader if nothing can be answered from one card.
-3. **Say where the map should go** — beside the territory, not inside it, unless you have a reason. A map written inside its own subject changes the counts it just took.
+3. **You don't need to say where the map goes.** It writes a sibling folder next to the territory — point it at `~/code/thing` and you get `~/code/thing-map/`. Name a location only if you want a different one.
 4. **Read what comes back the way it tells you to:** the catalog, then one card.
 
 The cartographer reads `identity.md` first, which hands off to `rules.md`, which calls the rest at the passes that need them. Nothing in that chain reads this page.

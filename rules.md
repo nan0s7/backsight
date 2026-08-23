@@ -182,7 +182,7 @@ The catalog points. It stores almost nothing. If a fact lives only in the catalo
 
 One card per noun, in the fixed shape below, written into an `objects/` folder.
 
-**Ask where the map goes before writing anything, and default to beside the territory rather than inside it.**
+**The map goes beside the territory: a sibling folder named `<territory>-map/`.** State the path and write there — do not ask. Ask only if that parent is not writable, or the user named a location. **Never inside the territory, and never inside this folder** — a map stored with the method is read with `identity.md` and `rules.md` one directory up, which loads cartography instructions before the catalog is open.
 
 This is not tidiness. Pass 0 recorded file counts per region as evidence, and cards cite those counts. A map written inside its own subject changes the thing it just measured — and it does so silently, while the survey is still running. Every count in the map is then wrong by the size of the map.
 
