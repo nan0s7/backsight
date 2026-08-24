@@ -181,12 +181,13 @@ Routing the Pass 0 list tells you three things a list written here cannot:
 - **An arrival that routes to no card** is a missing card or a boundary. Decide which. If it is a boundary, it belongs in *What is not carded*, not in silence.
 - **An arrival that needs two cards** is one noun carved wrongly. Merge them, per *card the change* below.
 - **A card no arrival reaches** is a card nobody asked for. Cut it, or find the arrival you missed.
+- **Several arrivals routing to the same card is the healthy case, not duplication.** Keep every one of them and print every one of them. Pass 0 asks for five to ten arrivals and most territories do not have five to ten cards, so the common, correct outcome is a card reached by three questions. A card reached by one is reachable only by a reader who happened to phrase it the way you did; the same card reached by three is reachable by three different readers, at no cost in cards, in load, or in what the reader ends up opening. **The front door is a list of ways in, not a list of cards.** If it has exactly one door per card, you dropped arrivals that already routed.
 
 ### The catalog first
 
 `catalog.md` is written before any card. It carries:
 
-- **The front door** — the question a reader most likely arrives with, and which card answers it. Phrase it as the reader's question, not as a category heading.
+- **The front door** — every arrival from Pass 0 that routed, and which card answers each. Not one per card, and not only the likeliest: the list of arrivals is what you have, and the reader who is turned away is the one whose phrasing you left out. Phrase each as the reader's question, not as a category heading.
 - **One line per card.** Name, status, and one clause on **what the card decides for you** — not what the noun is. A reader scanning this list is asking *is my answer in there*, and an identity phrase cannot answer that: *"the script's own filename, load-bearing in four places"* names the noun and routes nobody, while *"how it finds itself, kills duplicates, and relaunches"* tells a reader holding a concurrency question that they have arrived. Not a summary of the card.
 - **The load budget**, stated as an instruction and **bounded in both directions**: read this catalog, then one card, and stop.
 
