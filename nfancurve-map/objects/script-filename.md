@@ -6,8 +6,6 @@ Source:  temp.sh:43,63-69,187 ; USAGE.md:22,32 ; README.md:3,32
 
 **Why it is shaped that way:** POSIX `sh` offers no instance-locking convention for free, so the script identifies itself the only way available without another dependency — by matching its own name in the process table. That works exactly as long as the name never changes.
 
-**What points at it:** `temp.sh:64` and `:66` look the literal string up in the process table (`pgrep -c`/`-o`); `:43` relaunches it by name in daemon mode. Documented at `README.md:3,32` and `USAGE.md:14,18,22,32`.
-
 **Hits — renaming the file:**
 - **The script stops recognising itself, silently.** `pgrep -c temp.sh` (`:64`) returns 0 forever, so `kill_already_running` (`:63-69`), called unconditionally at `:187`, does nothing. No error, no log line. The only symptom is two copies issuing conflicting `nvidia-settings` calls at the same fans.
 - **Daemon mode launches the wrong thing.** `-D` runs `nohup sh temp.sh` (`:43`), also hardcoded. It will fail — or worse, start an *old* `temp.sh` still sitting in the directory.

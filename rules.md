@@ -233,23 +233,13 @@ Source:  <path(s)>
 
 What it is:                 one or two sentences; more only where each carries its own cited claim
 Why it is shaped that way:  one or two sentences
-What points at it:          what reads or names this, with paths — or the search, if nothing does
+What points at it:          ghost cards only — what makes the claim, with paths
 Hits:                       what moves if you change this, each with why
 Does not hit:               the wrong neighbour, and why the reader will reach for it
 Open:                       what this card is unsure of
 ```
 
-**Every card carries every field.** There are no conditional fields and no card type adds or drops one.
-
-`What points at it` is the card's evidence line, and what belongs in it follows from `Status` rather than from a rule you have to remember:
-
-- **live** — the reader you had to name at a path before you were allowed to write `live` at all. Pass 2 already made you find it; this is where it goes.
-- **ghost** — the claim the territory does not honour, and what makes it. This is the live half of a ghost and the only part a reader actually encounters, so it does not belong buried inside `What it is`, or inside `Hits`, which is where it goes when it goes wrong.
-- **leftover** — nothing reads it, and **where you looked**. Pass 3 forbids an unanchored negative; this is the line that anchors it.
-
-In all three cases the field holds work the survey had to do anyway. A card that cannot fill it is a card whose status was never evidenced.
-
-**A real card that fails this, with every fact in it correct, is at the end of `examples.md`. Read it before writing any card.**
+`What points at it` is the only conditional field, and only a ghost card carries it. The pointer is the live half of a ghost and the thing the next reader actually encounters, so it does not belong buried inside `What it is` — or inside `Hits`, which is where it goes when it goes wrong. **A real ghost card that fails this way, with every fact in it correct, is at the end of `examples.md`. Read it before writing a ghost card.**
 
 `Open` is not optional and not a formality. It is where the map admits its own edges — an inferred claim, an unverified path, a reader you could not chase down. One line. A card with nothing open is usually a card that did not look.
 

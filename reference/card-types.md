@@ -40,7 +40,7 @@ The false-description case is the one most often missed, because there is no bro
 
 The ghost card's centre of gravity is the **pointer**, not the absence. Anyone can see an empty folder. What the reader cannot see is that three live routing rows send them there, and that is the thing that will cost them.
 
-So a ghost card's `What points at it` field — which every card carries, per the shape in `rules.md` — names, with paths: what makes the claim, what a reader would expect from it, and what is actually there.
+So a ghost card carries the extra `What points at it` field defined in `rules.md`, and names in it, with paths: what makes the claim, what a reader would expect from it, and what is actually there.
 
 A ghost is a tripwire. A reader who trusts it implements the wrong world — builds against a destination that was never populated, or assumes a step exists because something referred to it.
 

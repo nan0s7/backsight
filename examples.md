@@ -96,8 +96,6 @@ Source:  temp.sh:43,63-69,187 ; USAGE.md:22,32 ; README.md:3,32
 
 **Why it is shaped that way:** POSIX `sh` offers no instance-locking convention for free, so the script identifies itself the only way available without another dependency — by matching its own name in the process table. That works exactly as long as the name never changes.
 
-**What points at it:** `temp.sh:64` and `:66` look the literal string up in the process table (`pgrep -c`/`-o`); `:43` relaunches it by name in daemon mode. Documented at `README.md:3,32` and `USAGE.md:14,18,22,32`.
-
 **Hits — renaming the file:**
 - **The script stops recognising itself, silently.** `pgrep -c temp.sh` (`:64`) returns 0 forever, so `kill_already_running` (`:63-69`), called unconditionally at `:187`, does nothing. No error, no log line. The only symptom is two copies issuing conflicting `nvidia-settings` calls at the same fans.
 - **Daemon mode launches the wrong thing.** `-D` runs `nohup sh temp.sh` (`:43`), also hardcoded. It will fail — or worse, start an *old* `temp.sh` still sitting in the directory.
@@ -123,8 +121,6 @@ Source:  config ; temp.sh:193
 **What it is:** A 48-line shell file **sourced, not parsed** (`. "$conf_file"`, `temp.sh:193`). It defines twelve variables the rest of the script reads by name — nine curve and timing values, and three that describe the machine: `fan2gpu` (`:48`) maps fans to GPUs, `which_curve` (`:38`) assigns a curve per fan, `default_fan` (`:43`) names the one fan used in single-fan mode. Those three are where multi-GPU behaviour is configured. There is no schema — validation is two array-length assertions (`:200`, `:205`) and two ordering assertions (`:209`, `:213`), and nothing else.
 
 **Why it is shaped that way:** Sourcing keeps the loader zero-code and POSIX `sh`. The price is validation: a typo'd key is read as unset rather than rejected by name.
-
-**What points at it:** `temp.sh:193` sources it (`. "$conf_file"`), after `:22-38` resolves its path from the script's own directory. Its twelve variables are then read by name throughout the script.
 
 **Hits:**
 - **Renaming a key breaks the script silently.** There is no `set -u`, so an unset variable inside `[ "$x" -eq … ]` fails the comparison instead of erroring with the missing name.
@@ -197,8 +193,6 @@ Source:  temp.sh:8,49 ; temp.sh:72,75,80,85 ; temp.sh:224,232 ; USAGE.md:53,71,7
 **What it is:** Every instruction this program sends to hardware goes through one variable, `gpu_cmd`, set to `nvidia-settings` at `:8` and repointed nowhere else except by `-x` (`:49`). It is invoked at exactly four lines — `:72` reads core temperature, `:75` runs a generic query, `:80` takes fan control, `:85` sets a speed — and each appends `$display`, which is empty by default (`:4`) and set only by `-d` as `-c <string>` (`:42`). Grepped the whole script for other external interfaces: `basename`, `dirname`, `pwd`, `ls` and `cd` for path resolution (`:10,25-38`) and `pgrep` for self-identification (`:64,66`). No `nvidia-smi`, no `/sys`, no `/proc`. Four lines are the entire hardware surface of 294.
 
 **Why it is shaped that way:** One variable in front of every call is what makes `-x` possible at all — swap the binary, get a fake GPU. That was the design intent, and it is the reason a reader reads `gpu_cmd` as an abstraction layer.
-
-**What points at it:** set at `temp.sh:8`, repointed only by `-x` at `:49`, and shelled out through at exactly four sites — `:72`, `:75`, `:80`, `:85`.
 
 **Hits — changing what this talks to:**
 - **All four call sites move together, and the variable does not help you.** `gpu_cmd` swaps a *command name*, not a *protocol*. The nvidia-settings syntax is written inline at each site — `-q=[gpu:N]/GPUCoreTemp -t`, `-a [gpu:N]/GPUFanControlState=`, `-a [fan:N]/GPUTargetFanSpeed=`. Anything that does not already speak that argument language needs four rewrites, not one assignment. `-x` works only because `nssim` mimics the syntax.
