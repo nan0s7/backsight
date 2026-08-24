@@ -6,6 +6,8 @@ Source:  config ; temp.sh:193
 
 **Why it is shaped that way:** Sourcing keeps the loader zero-code and POSIX `sh`. The price is validation: a typo'd key is read as unset rather than rejected by name.
 
+**What points at it:** `temp.sh:193` sources it (`. "$conf_file"`), after `:22-38` resolves its path from the script's own directory. Its twelve variables are then read by name throughout the script.
+
 **Hits:**
 - **Renaming a key breaks the script silently.** There is no `set -u`, so an unset variable inside `[ "$x" -eq … ]` fails the comparison instead of erroring with the missing name.
 - **`fcurve`/`tcurve` and `fcurve2`/`tcurve2` must stay equal length in pairs** (`:198-207`), or the script exits at startup with a named error. That is the only config validation that exists.

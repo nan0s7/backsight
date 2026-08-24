@@ -6,6 +6,8 @@ Source:  temp.sh:8,49 ; temp.sh:72,75,80,85 ; temp.sh:224,232 ; USAGE.md:53,71,7
 
 **Why it is shaped that way:** One variable in front of every call is what makes `-x` possible at all — swap the binary, get a fake GPU. That was the design intent, and it is the reason a reader reads `gpu_cmd` as an abstraction layer.
 
+**What points at it:** set at `temp.sh:8`, repointed only by `-x` at `:49`, and shelled out through at exactly four sites — `:72`, `:75`, `:80`, `:85`.
+
 **Hits — changing what this talks to:**
 - **All four call sites move together, and the variable does not help you.** `gpu_cmd` swaps a *command name*, not a *protocol*. The nvidia-settings syntax is written inline at each site — `-q=[gpu:N]/GPUCoreTemp -t`, `-a [gpu:N]/GPUFanControlState=`, `-a [fan:N]/GPUTargetFanSpeed=`. Anything that does not already speak that argument language needs four rewrites, not one assignment. `-x` works only because `nssim` mimics the syntax.
 - **Device detection parses English prose, not data.** `:224` and `:232` call `get_query` and recover a count by stripping suffixes: `${num_fans%* Fan on*}`, then `${num_fans%* Fans on*}`, and the same for `GPU`/`GPUs`. A reworded or localised response yields an empty string, and the script exits with *"No Fans detected"* (`:225-226`) — which reads as a hardware fault and is a parsing failure.
