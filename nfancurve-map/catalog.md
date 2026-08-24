@@ -1,53 +1,53 @@
-> **Load budget: this catalog, then one card. Stop.** Not a second card, not the `objects/` folder, and not `nfancurve` itself. If you arrived here by a recursive read, that is the budget already spent — answer from one card anyway.
+> **Load budget: this catalog, then one card. Stop.** Do not read a second card, the `objects/` folder, or `nfancurve` itself.
 >
-> **The file wins.** If you already know a card and the file disagree, the file is right. This settles a conflict; it is not an instruction to go and check one.
+> **The file wins.** If a card and a real file disagree, the file is right. This settles a conflict; it is not an instruction to go and check one.
 >
-> **The status words.** `live` — something reads it now, and this map names the reader. `ghost` — something live points at it, and the target is missing, inert, or unexplained. `leftover` — it was live, nothing reads it now, and it is harmless. No card here is a leftover.
+> **Status words:** **live** has a named reader; **ghost** is a claim the territory does not honour; **leftover** is harmless and unwired. No card here is a leftover.
 >
-> **Surveyed: 2026-08-20**, at commit `03fc62f`, via a shallow clone. The map says what it saw on the day it looked, and has no access to history before that commit.
+> **Surveyed 2026-08-24** at commit `03fc62fc01608749c06ab15fee5e29dadce7746f`. The map describes that revision only.
 >
-> **Nothing outside the map is part of the map — including `nfancurve` itself.** Not the source files, not plans or issue threads about them. If the map cannot answer you, the answer is that it cannot, not a trip into the repo.
+> **Nothing outside this map is part of the map — including `nfancurve` itself.** If no card answers the question, say so and stop.
 >
-> **Map location:** beside the territory, not inside it. The counts below do not include this map.
+> **Map location:** beside the territory, not inside it. Its six-file count excludes this map.
 
 ## Front door
 
-*"I want to rename `temp.sh`. What breaks?"* → `objects/script-filename.md`
+*“I want to rename `temp.sh`. What breaks?”* → `objects/script-filename.md`
 
-*"Where does the config come from, and what validates it?"* → `objects/config.md`
+*“Where does the config come from, and what validates it?”* → `objects/config.md`
 
-*"I want to run it as a service."* → `objects/nfancurve-service.md`
+*“I want to run it as a service.”* → `objects/nfancurve-service.md`
 
-*"I want to run this without a real Nvidia GPU."* → `objects/nssim-x-flag.md`
+*“I want to run this without a real Nvidia GPU.”* → `objects/nssim-x-flag.md`
 
-*"What does this actually talk to, and how much of it would I have to replace?"* → `objects/gpu-command-surface.md`
+*“What does this actually talk to, and how much would I have to replace?”* → `objects/gpu-command-surface.md`
 
 ## Names that do not mean what they say
 
-- **`temp.sh` means *temperature*, not *temporary*.** It is the entire program — 294 lines of fan control, nothing transient in it. Every new reader and every model reads it the other way first.
-- **`tmp`** is one variable name doing four unrelated jobs in that file: a process count (`:64`), a rebuild buffer for the old fan-speed list (`:146`), the same for temperatures (`:157`), and a curve selector (`:175`).
-- **`check_already_running` does not exist.** `README.md:25` tells a reader without `procps` to comment it out. The function is `kill_already_running` (`temp.sh:63`). Grepping for the documented name finds nothing.
+- **`temp.sh` means temperature, not temporary.** It is the whole 294-line program; treating it as disposable misroutes a reader around the program.
+- **`tmp`** has four unrelated jobs in `temp.sh`: process count (`:64`), speed-list buffer (`:146`), temperature-list buffer (`:157`), and curve selector (`:175`).
+- **`check_already_running` does not exist.** `README.md:25` names it; the function is `kill_already_running` at `temp.sh:63`.
 
 ## Cards
 
-| Card | Status | What it is |
+| Card | Status | What it decides |
 |---|---|---|
-| `objects/script-filename.md` | live | The script's own filename, load-bearing in four places |
-| `objects/config.md` | live | 12 keys, sourced not parsed; one has a flag equivalent, eleven do not |
-| `objects/nfancurve-service.md` | ghost | A unit file launching `/usr/bin/nfancurve`, which nothing here creates |
-| `objects/nssim-x-flag.md` | ghost | An undocumented flag pointing at a sibling checkout, `../nssim` |
-| `objects/gpu-command-surface.md` | live | Four lines are the program's entire contact with the hardware |
+| `objects/script-filename.md` | live | What must move with a script rename |
+| `objects/config.md` | live | Which settings are sourced and how little is validated |
+| `objects/nfancurve-service.md` | ghost | Why the shipped service cannot launch this checkout |
+| `objects/nssim-x-flag.md` | ghost | What the undocumented simulation option assumes exists |
+| `objects/gpu-command-surface.md` | live | Whether replacing the GPU interface is one change or four |
 
-## Not carded
+## What is not carded
 
-`LICENCE` — 674 lines of GPLv3 boilerplate. Nothing reads it: grepped `temp.sh`, `config`, `nfancurve.service`, `README.md` and `USAGE.md` for `licence`/`license`, case-insensitive, zero hits outside the file itself.
+`LICENCE` is GPLv3 text, not a consumer-facing seam: case-insensitive searches for `licence` and `license` across `temp.sh`, `config`, `nfancurve.service`, `README.md`, and `USAGE.md` found zero references outside the licence.
 
-The fan-curve arithmetic — the loop at `temp.sh:118-160` that maps a temperature onto a speed. The busiest code in the repo, and nothing else depends on how it works, only on what it reads: `loop_cmds` is called from exactly two places (`:278`, `:289`), both inside the main loop, and it returns nothing — it acts by calling `set_speed`. Grepped the script for its name: the definition and those two calls. If your question is *why did it pick 70%*, read `loop_cmds` directly.
+The fan-curve arithmetic at `temp.sh:114-172` is not carded. `loop_cmds` is defined once and called only at `:278` and `:289`, inside the main loops; it returns no value and affects the rest of the program only by calling `set_speed`. A question about why a particular speed was chosen needs that source directly.
 
-**Out of scope:** `../nssim` and the sibling repos it belongs to. Separate territories; only the pointer into them is mapped here.
+`../nssim` is out of scope: it is a separate territory. Only this repository’s pointer to it is mapped.
 
-**What this map is for:** knowing this repo well enough to change it. If your question asks the map to *do* something — get it running, find out what it did last night, fix the service — that is out of scope by kind. Say so and read the repo directly.
+This map is for orientation before changing this repository. Questions that ask it to run, repair, or diagnose the program are out of scope by kind.
 
 ## Pass 0 file counts
 
-Flat, no subdirectories, 6 tracked files. **Total lines:** `temp.sh` 294 · `LICENCE` 674 · `README.md` 89 · `USAGE.md` 79 · `config` 48 · `nfancurve.service` 11. The 459 quoted above is non-blank lines excluding the licence.
+The territory is flat: six tracked files. Lines: `temp.sh` 294; `LICENCE` 674; `README.md` 89; `USAGE.md` 79; `config` 48; `nfancurve.service` 11. It has 459 non-blank lines excluding `LICENCE`.

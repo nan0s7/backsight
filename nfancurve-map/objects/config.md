@@ -1,16 +1,15 @@
 # config
-Status:  live
-Source:  config ; temp.sh:193
+Status: live
+Source: config; temp.sh:193-215,248-267
 
-**What it is:** A 48-line shell file **sourced, not parsed** (`. "$conf_file"`, `temp.sh:193`). It defines twelve variables the rest of the script reads by name — nine curve and timing values, and three that describe the machine: `fan2gpu` (`:48`) maps fans to GPUs, `which_curve` (`:38`) assigns a curve per fan, `default_fan` (`:43`) names the one fan used in single-fan mode. Those three are where multi-GPU behaviour is configured. There is no schema — validation is two array-length assertions (`:200`, `:205`) and two ordering assertions (`:209`, `:213`), and nothing else.
+What it is: A 48-line shell file sourced, not parsed, by `. "$conf_file"` (`temp.sh:193`). It supplies twelve values: curves/timing plus `fan2gpu`, `which_curve`, and `default_fan`, which describe the fan-to-GPU layout.
 
-**Why it is shaped that way:** Sourcing keeps the loader zero-code and POSIX `sh`. The price is validation: a typo'd key is read as unset rather than rejected by name.
+Why it is shaped that way: Sourcing keeps the POSIX loader minimal, but makes this executable shell input rather than a schema-controlled settings file.
 
-**Hits:**
-- **Renaming a key breaks the script silently.** There is no `set -u`, so an unset variable inside `[ "$x" -eq … ]` fails the comparison instead of erroring with the missing name.
-- **`fcurve`/`tcurve` and `fcurve2`/`tcurve2` must stay equal length in pairs** (`:198-207`), or the script exits at startup with a named error. That is the only config validation that exists.
+Hits:
+- A renamed or misspelled key becomes unset; there is no `set -u` or key-name validation.
+- `fcurve`/`tcurve` and `fcurve2`/`tcurve2` must remain equal-length pairs, or startup exits at `temp.sh:198-207`; their first temperature must also exceed `min_t`/`min_t2` (`:208-215`).
 
-**Does not hit:**
-- **The command-line flags** (`-c -d -D -h -l -s -v -x`, `:40`). Exactly one of the twelve keys has a flag equivalent — `sleep_time`, via `-s`, which `:195` uses to overwrite it. The other eleven have no flag path at all. Because the surfaces overlap for the one key most people touch first, a reader will assume they mirror. They do not.
+Does not hit: Command-line options are the wrong neighbour. Only `sleep_time` has an equivalent (`-s`, copied over it at `temp.sh:195`); the other eleven settings have no option path, despite all options being parsed together at `:40-51`.
 
-**Open:** Ten of the twelve keys are documented nowhere outside comments in `config` itself — grepped `README.md` and `USAGE.md` for each, zero hits for `min_t`, `min_t2`, `sleep_time`, `hyst`, `force_check`, `fcurve2`, `tcurve2`, `which_curve`, `default_fan`, `fan2gpu`. `fcurve` and `tcurve` appear once each, in a version-history paragraph rather than as documentation. Whether these were never written up or fell out during the `config.txt` → `config.sh` → `config` renames that `USAGE.md` narrates is not determinable from a shallow clone.
+Open: Documentation beyond the inline comments is thin: searches of both Markdown files found no named documentation for ten keys; `fcurve` and `tcurve` occur only in USAGE’s version-history paragraph.

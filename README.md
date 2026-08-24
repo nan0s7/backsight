@@ -174,7 +174,7 @@ The pipeline lives inside `rules.md` rather than in numbered stage folders, and 
 
 ### Walk 1 — a 459-line shell utility (published in `examples.md`)
 
-A POSIX script driving GPU fan curves, written by the author in 2018. Dormant since a stranger's pull request merged in January 2023, and still working — which is the test Pass 0 applies, not recency. Public, so nothing is sanitised. Five cards, **97 non-blank lines against 459** — twenty-one per cent of the territory.
+A POSIX script driving GPU fan curves, written by the author in 2018. Dormant since a stranger's pull request merged in January 2023, and still working — which is the test Pass 0 applies, not recency. Public, so nothing is sanitised. Five cards, **86 non-blank lines against 459** — 19 per cent of the territory.
 
 Small on purpose. A map earns nothing on a folder you can read in one sitting *unless* the folder misleads you, and this one does in three separate ways:
 
@@ -259,7 +259,7 @@ Neutral working directory, fresh reader each time, the territory not mentioned. 
 
 **All three ran a recursive text search across the map folder before reading anything.** Not "opened a second card hoping" — a tooling reflex that swept every card in one action. That is a limit this form cannot fully close: **the load budget is stated inside `catalog.md`, which you can only reach by an action that may already have violated it.** There is no doorplate on the outside of the building. The budget is now the catalog's first line, which is the most a document inside the folder can do.
 
-The honest reframe is that the budget is a discipline the map declares, not a fence it enforces — and **the map's real protection is being small.** In the worst run the reader swept all 97 lines of it instead of reading 459 lines of territory. Total budget failure still cost about a fifth of the source.
+The honest reframe is that the budget is a discipline the map declares, not a fence it enforces — and **the map's real protection is being small.** In the worst run the reader swept all 86 lines of it instead of reading 459 lines of territory. Total budget failure still cost about a fifth of the source.
 
 **Two findings against the map itself:**
 

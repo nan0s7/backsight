@@ -4,6 +4,8 @@ One worked map, reproduced whole: the catalog, five cards, and a note on how the
 
 **Read this before writing a catalog.** It is calibration, not illustration — the thing being calibrated is how much a card leaves out.
 
+Everything below the territory note is **verbatim tool output**, unedited: the catalog and cards this folder produced when pointed at `nfancurve` on 24 August 2026. Two independent runs of the same commit produced the same five cards, the same two ghosts and the same three collisions. What is hand-written here is the framing — this note, the territory description, and the closing note on carving.
+
 ---
 
 ## The territory
@@ -14,7 +16,7 @@ One worked map, reproduced whole: the catalog, five cards, and a note on how the
 
 It is small on purpose. A map earns nothing on a territory you can read in one sitting *unless* the territory misleads you, and this one does: its most important name means the opposite of what it looks like, and the one file a reader opens before renaming a script is the one file that does not care.
 
-**Map size: 97 non-blank lines against 459.** Twenty-one per cent.
+**Map size: 86 non-blank lines against 459.** 19 per cent.
 
 **This map also ships walkable**, at `nfancurve-map/` — the same catalog and the same five cards, as separate files. To test the two-hop walk, open `nfancurve-map/catalog.md` and nothing else. It is reproduced here in full because a worked map belongs in this file; the two are the same text.
 
@@ -28,59 +30,59 @@ There is also no `leftover`, and the survey looked: all twelve functions defined
 
 # catalog.md
 
-> **Load budget: this catalog, then one card. Stop.** Not a second card, not the `objects/` folder, and not `nfancurve` itself. If you arrived here by a recursive read, that is the budget already spent — answer from one card anyway.
+> **Load budget: this catalog, then one card. Stop.** Do not read a second card, the `objects/` folder, or `nfancurve` itself.
 >
-> **The file wins.** If you already know a card and the file disagree, the file is right. This settles a conflict; it is not an instruction to go and check one.
+> **The file wins.** If a card and a real file disagree, the file is right. This settles a conflict; it is not an instruction to go and check one.
 >
-> **The status words.** `live` — something reads it now, and this map names the reader. `ghost` — something live points at it, and the target is missing, inert, or unexplained. `leftover` — it was live, nothing reads it now, and it is harmless. No card here is a leftover.
+> **Status words:** **live** has a named reader; **ghost** is a claim the territory does not honour; **leftover** is harmless and unwired. No card here is a leftover.
 >
-> **Surveyed: 2026-08-20**, at commit `03fc62f`, via a shallow clone. The map says what it saw on the day it looked, and has no access to history before that commit.
+> **Surveyed 2026-08-24** at commit `03fc62fc01608749c06ab15fee5e29dadce7746f`. The map describes that revision only.
 >
-> **Nothing outside the map is part of the map — including `nfancurve` itself.** Not the source files, not plans or issue threads about them. If the map cannot answer you, the answer is that it cannot, not a trip into the repo.
+> **Nothing outside this map is part of the map — including `nfancurve` itself.** If no card answers the question, say so and stop.
 >
-> **Map location:** beside the territory, not inside it. The counts below do not include this map.
+> **Map location:** beside the territory, not inside it. Its six-file count excludes this map.
 
 ## Front door
 
-*"I want to rename `temp.sh`. What breaks?"* → `objects/script-filename.md`
+*“I want to rename `temp.sh`. What breaks?”* → `objects/script-filename.md`
 
-*"Where does the config come from, and what validates it?"* → `objects/config.md`
+*“Where does the config come from, and what validates it?”* → `objects/config.md`
 
-*"I want to run it as a service."* → `objects/nfancurve-service.md`
+*“I want to run it as a service.”* → `objects/nfancurve-service.md`
 
-*"I want to run this without a real Nvidia GPU."* → `objects/nssim-x-flag.md`
+*“I want to run this without a real Nvidia GPU.”* → `objects/nssim-x-flag.md`
 
-*"What does this actually talk to, and how much of it would I have to replace?"* → `objects/gpu-command-surface.md`
+*“What does this actually talk to, and how much would I have to replace?”* → `objects/gpu-command-surface.md`
 
 ## Names that do not mean what they say
 
-- **`temp.sh` means *temperature*, not *temporary*.** It is the entire program — 294 lines of fan control, nothing transient in it. Every new reader and every model reads it the other way first.
-- **`tmp`** is one variable name doing four unrelated jobs in that file: a process count (`:64`), a rebuild buffer for the old fan-speed list (`:146`), the same for temperatures (`:157`), and a curve selector (`:175`).
-- **`check_already_running` does not exist.** `README.md:25` tells a reader without `procps` to comment it out. The function is `kill_already_running` (`temp.sh:63`). Grepping for the documented name finds nothing.
+- **`temp.sh` means temperature, not temporary.** It is the whole 294-line program; treating it as disposable misroutes a reader around the program.
+- **`tmp`** has four unrelated jobs in `temp.sh`: process count (`:64`), speed-list buffer (`:146`), temperature-list buffer (`:157`), and curve selector (`:175`).
+- **`check_already_running` does not exist.** `README.md:25` names it; the function is `kill_already_running` at `temp.sh:63`.
 
 ## Cards
 
-| Card | Status | What it is |
+| Card | Status | What it decides |
 |---|---|---|
-| `objects/script-filename.md` | live | The script's own filename, load-bearing in four places |
-| `objects/config.md` | live | 12 keys, sourced not parsed; one has a flag equivalent, eleven do not |
-| `objects/nfancurve-service.md` | ghost | A unit file launching `/usr/bin/nfancurve`, which nothing here creates |
-| `objects/nssim-x-flag.md` | ghost | An undocumented flag pointing at a sibling checkout, `../nssim` |
-| `objects/gpu-command-surface.md` | live | Four lines are the program's entire contact with the hardware |
+| `objects/script-filename.md` | live | What must move with a script rename |
+| `objects/config.md` | live | Which settings are sourced and how little is validated |
+| `objects/nfancurve-service.md` | ghost | Why the shipped service cannot launch this checkout |
+| `objects/nssim-x-flag.md` | ghost | What the undocumented simulation option assumes exists |
+| `objects/gpu-command-surface.md` | live | Whether replacing the GPU interface is one change or four |
 
-## Not carded
+## What is not carded
 
-`LICENCE` — 674 lines of GPLv3 boilerplate. Nothing reads it: grepped `temp.sh`, `config`, `nfancurve.service`, `README.md` and `USAGE.md` for `licence`/`license`, case-insensitive, zero hits outside the file itself.
+`LICENCE` is GPLv3 text, not a consumer-facing seam: case-insensitive searches for `licence` and `license` across `temp.sh`, `config`, `nfancurve.service`, `README.md`, and `USAGE.md` found zero references outside the licence.
 
-The fan-curve arithmetic — the loop at `temp.sh:118-160` that maps a temperature onto a speed. The busiest code in the repo, and nothing else depends on how it works, only on what it reads: `loop_cmds` is called from exactly two places (`:278`, `:289`), both inside the main loop, and it returns nothing — it acts by calling `set_speed`. Grepped the script for its name: the definition and those two calls. If your question is *why did it pick 70%*, read `loop_cmds` directly.
+The fan-curve arithmetic at `temp.sh:114-172` is not carded. `loop_cmds` is defined once and called only at `:278` and `:289`, inside the main loops; it returns no value and affects the rest of the program only by calling `set_speed`. A question about why a particular speed was chosen needs that source directly.
 
-**Out of scope:** `../nssim` and the sibling repos it belongs to. Separate territories; only the pointer into them is mapped here.
+`../nssim` is out of scope: it is a separate territory. Only this repository’s pointer to it is mapped.
 
-**What this map is for:** knowing this repo well enough to change it. If your question asks the map to *do* something — get it running, find out what it did last night, fix the service — that is out of scope by kind. Say so and read the repo directly.
+This map is for orientation before changing this repository. Questions that ask it to run, repair, or diagnose the program are out of scope by kind.
 
 ## Pass 0 file counts
 
-Flat, no subdirectories, 6 tracked files. **Total lines:** `temp.sh` 294 · `LICENCE` 674 · `README.md` 89 · `USAGE.md` 79 · `config` 48 · `nfancurve.service` 11. The 459 quoted above is non-blank lines excluding the licence.
+The territory is flat: six tracked files. Lines: `temp.sh` 294; `LICENCE` 674; `README.md` 89; `USAGE.md` 79; `config` 48; `nfancurve.service` 11. It has 459 non-blank lines excluding `LICENCE`.
 
 ---
 
@@ -88,25 +90,22 @@ Flat, no subdirectories, 6 tracked files. **Total lines:** `temp.sh` 294 · `LIC
 
 ```
 # The script's own filename
-Status:  live
-Source:  temp.sh:43,63-69,187 ; USAGE.md:22,32 ; README.md:3,32
+Status: live
+Source: temp.sh:43,63-69,187; USAGE.md:14,18-35; README.md:3,32
 ```
 
-**What it is:** `temp.sh` is not only a filename. The script uses that literal string to find its own running copy (`pgrep -c temp.sh`, `:64`; `pgrep -o temp.sh`, `:66`), to relaunch itself in daemon mode (`nohup sh temp.sh`, `:43`), and throughout its documented setup. There is no PID file and no lock file — grepped for `pidfile`, `lockfile`, `flock` and `/var/run`, zero hits. `$0` is available and *is* used, at `:4` to resolve the config path and at `:10` for the help text, but never for the process-table lookup that a rename breaks.
+What it is: `temp.sh` is a load-bearing name, not merely the script filename. It is hard-coded for duplicate-process detection (`pgrep` at `temp.sh:64,66`), daemon relaunch (`:43`), and the documented invocation and desktop entry.
 
-**Why it is shaped that way:** POSIX `sh` offers no instance-locking convention for free, so the script identifies itself the only way available without another dependency — by matching its own name in the process table. That works exactly as long as the name never changes.
+Why it is shaped that way: The POSIX shell script has no PID or lock file (searched `pidfile`, `lockfile`, `flock`, and `/var/run`: zero matches), so it identifies its own running instance by process name. `$0` is used for config resolution and help, but never for the process lookup.
 
-**Hits — renaming the file:**
-- **The script stops recognising itself, silently.** `pgrep -c temp.sh` (`:64`) returns 0 forever, so `kill_already_running` (`:63-69`), called unconditionally at `:187`, does nothing. No error, no log line. The only symptom is two copies issuing conflicting `nvidia-settings` calls at the same fans.
-- **Daemon mode launches the wrong thing.** `-D` runs `nohup sh temp.sh` (`:43`), also hardcoded. It will fail — or worse, start an *old* `temp.sh` still sitting in the directory.
-- **The documented desktop entry breaks.** `USAGE.md:22` and `:32` both specify `Exec=/home/foo/temp.sh`.
-- **The run instructions stop matching.** `README.md:3` and `:32`, `USAGE.md:14` and `:18` all name the file. Grepped both doc files for `temp.sh`: six lines, these four plus the two desktop-entry lines above.
+Hits:
+- Renaming it makes `kill_already_running` (`:63-69`, called at `:187`) stop finding running copies. The silent result is concurrent copies issuing fan commands.
+- `-D` relaunches `nohup sh temp.sh` (`:43`): a rename makes daemon mode fail or start an old same-named file.
+- The desktop-entry examples and run instructions name `temp.sh` (README `:3,32`; USAGE `:14,18-35`).
 
-**Does not hit:**
-- **`nfancurve.service`.** This is the file a reader opens first, and it is the one that does not care. Grep the unit for `temp.sh`: zero occurrences. It launches `/usr/bin/nfancurve`, a name this repository never produces. Finding nothing to change there reads as confirmation the rename is safe.
-- **`config`.** Located from the script's own resolved directory (`temp.sh:22-38`, which follows symlinks), not from its name. Rename freely; the config still loads.
+Does not hit: `nfancurve.service` is the plausible neighbour but contains no `temp.sh` (searched the unit; zero matches); it already launches `/usr/bin/nfancurve`, which this repository does not create. `config` still loads because the script resolves its directory, follows symlinks, then appends `/config` (`temp.sh:22-38`).
 
-**Open:** Not verified against a live system. `pgrep -c`/`-o` are GNU/procps flags; this card takes the script's own `# DEPENDS: PROCPS` comment (`:62`) at face value rather than testing it.
+Open: Not tested on a live system; `pgrep -c` and `-o` are assumed to be available through the stated `procps` dependency (`temp.sh:62`).
 
 ---
 
@@ -114,22 +113,21 @@ Source:  temp.sh:43,63-69,187 ; USAGE.md:22,32 ; README.md:3,32
 
 ```
 # config
-Status:  live
-Source:  config ; temp.sh:193
+Status: live
+Source: config; temp.sh:193-215,248-267
 ```
 
-**What it is:** A 48-line shell file **sourced, not parsed** (`. "$conf_file"`, `temp.sh:193`). It defines twelve variables the rest of the script reads by name — nine curve and timing values, and three that describe the machine: `fan2gpu` (`:48`) maps fans to GPUs, `which_curve` (`:38`) assigns a curve per fan, `default_fan` (`:43`) names the one fan used in single-fan mode. Those three are where multi-GPU behaviour is configured. There is no schema — validation is two array-length assertions (`:200`, `:205`) and two ordering assertions (`:209`, `:213`), and nothing else.
+What it is: A 48-line shell file sourced, not parsed, by `. "$conf_file"` (`temp.sh:193`). It supplies twelve values: curves/timing plus `fan2gpu`, `which_curve`, and `default_fan`, which describe the fan-to-GPU layout.
 
-**Why it is shaped that way:** Sourcing keeps the loader zero-code and POSIX `sh`. The price is validation: a typo'd key is read as unset rather than rejected by name.
+Why it is shaped that way: Sourcing keeps the POSIX loader minimal, but makes this executable shell input rather than a schema-controlled settings file.
 
-**Hits:**
-- **Renaming a key breaks the script silently.** There is no `set -u`, so an unset variable inside `[ "$x" -eq … ]` fails the comparison instead of erroring with the missing name.
-- **`fcurve`/`tcurve` and `fcurve2`/`tcurve2` must stay equal length in pairs** (`:198-207`), or the script exits at startup with a named error. That is the only config validation that exists.
+Hits:
+- A renamed or misspelled key becomes unset; there is no `set -u` or key-name validation.
+- `fcurve`/`tcurve` and `fcurve2`/`tcurve2` must remain equal-length pairs, or startup exits at `temp.sh:198-207`; their first temperature must also exceed `min_t`/`min_t2` (`:208-215`).
 
-**Does not hit:**
-- **The command-line flags** (`-c -d -D -h -l -s -v -x`, `:40`). Exactly one of the twelve keys has a flag equivalent — `sleep_time`, via `-s`, which `:195` uses to overwrite it. The other eleven have no flag path at all. Because the surfaces overlap for the one key most people touch first, a reader will assume they mirror. They do not.
+Does not hit: Command-line options are the wrong neighbour. Only `sleep_time` has an equivalent (`-s`, copied over it at `temp.sh:195`); the other eleven settings have no option path, despite all options being parsed together at `:40-51`.
 
-**Open:** Ten of the twelve keys are documented nowhere outside comments in `config` itself — grepped `README.md` and `USAGE.md` for each, zero hits for `min_t`, `min_t2`, `sleep_time`, `hyst`, `force_check`, `fcurve2`, `tcurve2`, `which_curve`, `default_fan`, `fan2gpu`. `fcurve` and `tcurve` appear once each, in a version-history paragraph rather than as documentation. Whether these were never written up or fell out during the `config.txt` → `config.sh` → `config` renames that `USAGE.md` narrates is not determinable from a shallow clone.
+Open: Documentation beyond the inline comments is thin: searches of both Markdown files found no named documentation for ten keys; `fcurve` and `tcurve` occur only in USAGE’s version-history paragraph.
 
 ---
 
@@ -137,24 +135,21 @@ Source:  config ; temp.sh:193
 
 ```
 # nfancurve.service
-Status:  ghost
-Source:  nfancurve.service:7 ; README.md:44-50
+Status: ghost
+Source: nfancurve.service:7; README.md:44-50
 ```
 
-**What it is:** A systemd unit. Its only `ExecStart` runs `/usr/bin/nfancurve -c /etc/nfancurve.conf`.
+What it is: A systemd unit whose sole launch command is `/usr/bin/nfancurve -c /etc/nfancurve.conf`.
 
-**Why it is shaped that way:** A packaged layout — binary on `$PATH`, config under `/etc` — is what a unit conventionally expects. This repo does not ship that way. It ships a script and a config meant to sit together in a checkout, under whatever path you cloned to.
+Why it is shaped that way: It assumes a packaged layout, while this repository supplies a checkout-local `temp.sh` and `config`.
 
-**What points at it:** `README.md:44-50` says to move the unit into place and enable it, and separately says *"Ensure the script and the config paths are correct."* **It never says what correct is.** Grepping every tracked file for `/usr/bin` or `/etc/nfancurve` returns hits in the unit file and nowhere else — no install step, no build, no symlink instruction. Following the README exactly and starting the service fails at the first `ExecStart`.
+What points at it: `README.md:44-50` tells the reader to install and enable the unit, then only says to ensure the script and config paths are correct. Searches of every tracked file for `/usr/bin` and `/etc/nfancurve` find the unit alone: nothing here installs, builds, links, or otherwise explains those targets.
 
-**Hits:**
-- Anyone following the documented setup. The failure is at launch, which at least is loud.
+Hits: Following the documented service setup reaches this broken launch path; it fails at `ExecStart` rather than exercising the script.
 
-**Does not hit:**
-- **`temp.sh` itself.** The script runs correctly by any other invocation. This ghost is specific to the systemd path convention, not a defect in the program — a reader who concludes the script is broken has over-read the card.
-- **The rename.** Pointing this unit at a real path does not make the script safe to rename, and renaming the script does not change this unit. The two problems share a filename and nothing else.
+Does not hit: `temp.sh` is the wrong neighbour. Direct invocation remains separately documented at `README.md:32`; this is a service-layout ghost, not evidence that the program cannot run. Nor does correcting the unit make a script rename safe.
 
-**Open:** Whether *"ensure the paths are correct"* means *symlink `/usr/bin/nfancurve` to your checkout yourself* is a reasonable guess and is stated nowhere.
+Open: The intended real paths or installation method cannot be derived from this territory.
 
 ---
 
@@ -162,23 +157,21 @@ Source:  nfancurve.service:7 ; README.md:44-50
 
 ```
 # -x flag / nssim
-Status:  ghost
-Source:  temp.sh:8,40,49
+Status: ghost
+Source: temp.sh:8,40,49
 ```
 
-**What it is:** An option parsed like any other (`getopts ":c: :d: :D :h :l :s: :v :x"`, `:40`) that repoints `gpu_cmd` — the variable every GPU-facing function shells out through — from `nvidia-settings` to `../nssim/nssim nvidia-settings` (`:49`). A sibling checkout, one directory up, standing in for the real command.
+What it is: `-x` redirects `gpu_cmd` from `nvidia-settings` to `../nssim/nssim nvidia-settings`, a sibling tool expected to mimic the real command.
 
-**Why it is shaped that way:** It is the only route by which this script runs without a real Nvidia GPU. Everything else assumes `nvidia-settings` exists and answers correctly.
+Why it is shaped that way: It is the only in-repository route around real Nvidia hardware; the normal path sets `gpu_cmd` to `nvidia-settings` at `temp.sh:8`.
 
-**What points at it:** Only the `getopts` string (`:40`) and the `elif` chain (`:49`). Nothing in this territory creates, clones, or names `../nssim`. It is **absent from the script's own help text** — `:10-19` lists `-c -d -D -h -l -s -v`, not `-x` — and absent from both doc files: grepped for `nssim` and for `-x` across `README.md` and `USAGE.md`, zero hits in either. The only way to discover this flag is to read the `getopts` string or the `elif` chain directly. A reader holding only this territory cannot find out it exists, let alone what it needs.
+What points at it: The only pointers are the `getopts` specification (`temp.sh:40`) and its `elif` at `:49`. `-x` is absent from the help text (`:10-19`), and searches of `README.md` and `USAGE.md` for `nssim` and `-x` have zero matches. No tracked file creates, clones, or describes `../nssim`.
 
-**Hits:**
-- Running `-x` without that sibling present fails the way any missing command fails here — a bare shell "command not found", not a named error mentioning `nssim`.
+Hits: Running `-x` without that sibling leaves the shell trying to invoke a missing command, without a named `nssim` error from this program.
 
-**Does not hit:**
-- **The other flags in the same chain.** Each is an independent `elif` (`:41-51`); changing or removing `-x` touches none of their behaviour, only what `gpu_cmd` resolves to.
+Does not hit: The adjacent flags are the wrong neighbour: each is an independent `elif` from `temp.sh:41-51`; altering `-x` alone only changes the command assigned to `gpu_cmd`.
 
-**Open:** Whether `../nssim` names a specific published repository is inferred from the sibling-directory convention, not from anything stated here. Nothing in this territory names a source for it.
+Open: The identity and source of the presumed sibling repository are not stated in this territory.
 
 ---
 
@@ -186,24 +179,22 @@ Source:  temp.sh:8,40,49
 
 ```
 # gpu_cmd — the GPU command surface
-Status:  live
-Source:  temp.sh:8,49 ; temp.sh:72,75,80,85 ; temp.sh:224,232 ; USAGE.md:53,71,77
+Status: live
+Source: temp.sh:8,49,72,75,80,85,224,232; USAGE.md:53,71,77
 ```
 
-**What it is:** Every instruction this program sends to hardware goes through one variable, `gpu_cmd`, set to `nvidia-settings` at `:8` and repointed nowhere else except by `-x` (`:49`). It is invoked at exactly four lines — `:72` reads core temperature, `:75` runs a generic query, `:80` takes fan control, `:85` sets a speed — and each appends `$display`, which is empty by default (`:4`) and set only by `-d` as `-c <string>` (`:42`). Grepped the whole script for other external interfaces: `basename`, `dirname`, `pwd`, `ls` and `cd` for path resolution (`:10,25-38`) and `pgrep` for self-identification (`:64,66`). No `nvidia-smi`, no `/sys`, no `/proc`. Four lines are the entire hardware surface of 294.
+What it is: Every hardware-facing action calls `$gpu_cmd`: temperature query (`temp.sh:72`), general query (`:75`), fan-control state (`:80`), and fan speed (`:85`). `-d` supplies its display argument (`:42`).
 
-**Why it is shaped that way:** One variable in front of every call is what makes `-x` possible at all — swap the binary, get a fake GPU. That was the design intent, and it is the reason a reader reads `gpu_cmd` as an abstraction layer.
+Why it is shaped that way: One command variable permits the hidden `-x` simulation route, but the call syntax remains written at each of the four sites.
 
-**Hits — changing what this talks to:**
-- **All four call sites move together, and the variable does not help you.** `gpu_cmd` swaps a *command name*, not a *protocol*. The nvidia-settings syntax is written inline at each site — `-q=[gpu:N]/GPUCoreTemp -t`, `-a [gpu:N]/GPUFanControlState=`, `-a [fan:N]/GPUTargetFanSpeed=`. Anything that does not already speak that argument language needs four rewrites, not one assignment. `-x` works only because `nssim` mimics the syntax.
-- **Device detection parses English prose, not data.** `:224` and `:232` call `get_query` and recover a count by stripping suffixes: `${num_fans%* Fan on*}`, then `${num_fans%* Fans on*}`, and the same for `GPU`/`GPUs`. A reworded or localised response yields an empty string, and the script exits with *"No Fans detected"* (`:225-226`) — which reads as a hardware fault and is a parsing failure.
-- **`$display` is unquoted at all four sites**, deliberately: it carries two words (`-c :0`). Quoting it while tidying breaks every call at once.
+Hits:
+- Replacing the GPU interface requires four protocol rewrites, not a one-line command swap: the inline calls use distinct `nvidia-settings` query and assignment syntax.
+- Device detection parses the English `Fan(s) on` and `GPU(s) on` suffixes from query output (`:224-237`). A changed or localised response becomes an empty count and reports “No Fans detected” (`:225-226`).
+- `$display` is intentionally unquoted because it carries `-c <string>`; quoting it as one argument changes all four calls.
 
-**Does not hit:**
-- **The fan-curve arithmetic** (`temp.sh:118-160`). The loop turns a temperature into a percentage and hands it to `set_speed`; it never learns what command delivers it, and no line between `:118` and `:160` mentions `gpu_cmd` or `display`. A reader who assumes changing the interface means rewriting the curve has over-read this card.
-- **`config`.** A reader is right to suspect it, and three of its twelve keys really are topology rather than curve values: `fan2gpu` (`:48`, read at `temp.sh:174`) maps each fan to a GPU, `which_curve` (`:38`, read at `:175`) picks a curve per fan, `default_fan` (`:43`, read at `:273`) picks one fan in single-fan mode. It still does not move, and the reason is the distinction this card is about: those keys address fans and GPUs by **index**, while `gpu_cmd` is *how you reach them*. Grepped `config` for anything naming a thing to talk to — `nvidia`, `settings`, `display`, `cmd`, `:0`, `/dev`, `xorg`, `coolbits` — zero hits.
+Does not hit: Fan-curve arithmetic at `temp.sh:114-172` is the wrong neighbour. It maps temperatures to a percentage and calls `set_speed`, but has no `gpu_cmd` or `display` reference. `config` likewise stores only numeric/topology indexes: searches there for `nvidia`, `settings`, `display`, `cmd`, `:0`, `/dev`, `xorg`, and `coolbits` return zero hits.
 
-**Open:** The territory documents an X requirement — display strings of the form `":0"` (`:14`) and a `Coolbits` value in `xorg.conf` (`USAGE.md:53,71,77`) — and **nothing checks either at runtime**; grepped `temp.sh` for `coolbits`, zero hits. Whether `nvidia-settings` still answers these queries on a current driver or session is not knowable from inside this territory, and the survey makes no claim about it. The last commit here is January 2023.
+Open: The territory documents X/CoolBits setup but `temp.sh` does not check it (searched `coolbits`: zero hits); current-driver behaviour cannot be established from this 2023 revision.
 
 ---
 
