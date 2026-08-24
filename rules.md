@@ -233,12 +233,13 @@ Source:  <path(s)>
 
 What it is:                 one or two sentences; more only where each carries its own cited claim
 Why it is shaped that way:  one or two sentences
+What points at it:          ghost cards only — what makes the claim, with paths
 Hits:                       what moves if you change this, each with why
 Does not hit:               the wrong neighbour, and why the reader will reach for it
 Open:                       what this card is unsure of
 ```
 
-**A ghost card carries one extra field**, `What points at it`, between `Why it is shaped that way` and `Hits`. The pointer is the live half of a ghost and it is what the next reader actually encounters, so it does not belong buried inside `What it is`. No other card type adds a field.
+`What points at it` is the only conditional field, and only a ghost card carries it. The pointer is the live half of a ghost and the thing the next reader actually encounters, so it does not belong buried inside `What it is`.
 
 `Open` is not optional and not a formality. It is where the map admits its own edges — an inferred claim, an unverified path, a reader you could not chase down. One line. A card with nothing open is usually a card that did not look.
 
