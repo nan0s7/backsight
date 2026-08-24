@@ -207,41 +207,6 @@ Source:  temp.sh:8,49 ; temp.sh:72,75,80,85 ; temp.sh:224,232 ; USAGE.md:53,71,7
 
 ---
 
-# A ghost card that fails
-
-**Not part of the map.** This is a real card, produced by a real run of this folder against this same territory on 24 August. Every fact in it is correct and it still fails.
-
-```
-# -x / nssim simulator route
-Status:  ghost
-Source:  temp.sh:8,40-52
-
-What it is: A parsed but hidden `-x` option. It replaces `gpu_cmd`'s normal
-`nvidia-settings` value with `../nssim/nssim nvidia-settings`, a relative
-sibling command path.
-
-Why it is shaped that way: `gpu_cmd` is the variable used by every GPU-facing
-function, so this option changes the executable while leaving each call's
-`nvidia-settings` argument form intact.
-
-Hits:
-- A run with `-x` depends immediately on a sibling `../nssim/nssim`; that
-  target is absent beside this checkout.
-- The standard help text at `temp.sh:10-19` omits `-x`, though the `getopts`
-  declaration accepts it at `:40`. The README and usage guide contain no
-  `nssim` or `-x` references (searched both files).
-```
-
-The searches are real. The paths are right. The ghost is correctly identified, and the card would survive the photocopy check, the negative check and the independence check.
-
-**It fails because it has no `What points at it` field.** The pointer — the `getopts` string at `:40` and the `elif` at `:49`, absent from the help text and from both doc files — is the live half of this ghost and the only part of it a reader will ever actually encounter. Here it is scattered through `Hits`, where it reads as a consequence of the ghost rather than as the thing itself.
-
-So a reader skimming this card learns that `-x` is broken. **They do not learn that they cannot find out `-x` exists** without reading the `getopts` string directly. That second fact is the finding, and this card buries it.
-
-This is the most common way a ghost card goes wrong, and the reason it keeps happening is that it does not look wrong. Nothing is missing, nothing is false, and the pointer evidence *is* present — just dissolved into narrative. Compare `objects/nssim-x-flag.md` above, where the same evidence sits in its own field and hits the reader first.
-
----
-
 # Why the change is one card, not four
 
 `script-filename.md` is the whole change. Renaming `temp.sh` lands in four places and gets one card, not one per place — Pass 4, *card the change, not the parts of the change*. Carved by module it would have been a card for `kill_already_running`, a card for `-D`, a card for the desktop entry and a card for the docs: four cards that are individually true, and not one of them answers the question the reader arrived with.

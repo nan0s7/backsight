@@ -89,7 +89,7 @@ Refusal is a successful outcome here, not a failure to try.
 
 The catalog carries the front door, one line per card, the name collisions resolved in place, the load budget, and — in the header, not buried — **the disagreement rule: where a card and the real file disagree, the file wins.**
 
-Every card is the same fixed shape, so you can skim any of them without learning a new format:
+Every card is the same fixed shape, so you can skim any of them without learning a new format. One field is conditional: only a ghost card carries `What points at it`.
 
 ```
 # <noun>
@@ -98,6 +98,7 @@ Source:  <path(s)>
 
 What it is:                 one or two sentences
 Why it is shaped that way:  one or two sentences
+What points at it:          ghost cards only — what makes the claim, with paths
 Hits:                       what moves if you change this, each with why
 Does not hit:               the wrong neighbour, and why the reader will reach for it
 Open:                       what this card is unsure of

@@ -239,7 +239,7 @@ Does not hit:               the wrong neighbour, and why the reader will reach f
 Open:                       what this card is unsure of
 ```
 
-`What points at it` is the only conditional field, and only a ghost card carries it. The pointer is the live half of a ghost and the thing the next reader actually encounters, so it does not belong buried inside `What it is` — or inside `Hits`, which is where it goes when it goes wrong. **A real ghost card that fails this way, with every fact in it correct, is at the end of `examples.md`. Read it before writing a ghost card.**
+`What points at it` is the only conditional field, and only a ghost card carries it. The pointer is the live half of a ghost and the thing the next reader actually encounters, so it does not belong buried inside `What it is` — or inside `Hits`, which is where it goes when it goes wrong.
 
 `Open` is not optional and not a formality. It is where the map admits its own edges — an inferred claim, an unverified path, a reader you could not chase down. One line. A card with nothing open is usually a card that did not look.
 
