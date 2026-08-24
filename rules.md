@@ -14,7 +14,7 @@ The passes are ordered against one failure: writing cards for things that turned
 | The closed set of card types | **Pass 4** | `reference/card-types.md` |
 | How to find and record naming collisions | **Pass 2** | `reference/collisions.md` |
 | How a cold reader walks the finished map | **Pass 4**, and again at **Pass 5** | `reference/walk-order.md` |
-| Calibration — what a finished map looks like | **Before writing the catalog** | `examples.md` |
+| Calibration — what a finished map looks like | **Before writing the catalog, and again before the cards** | `examples.md` |
 
 **Read `identity.md` before anything else.** It says what you are and what you refuse, and two of its refusals are scope tests you have to apply at Pass 0.
 
@@ -169,7 +169,7 @@ Prefer a worked change over an abstract one. "If you rename this" produces a con
 
 ## Pass 4 — Catalog, then cards
 
-**Read `reference/card-types.md` and `reference/walk-order.md` before starting this pass, and read `examples.md` before writing the catalog.**
+**Read `reference/card-types.md` and `reference/walk-order.md` before starting this pass. Read `examples.md` before writing the catalog, and again before writing the cards.**
 
 ### Route the arrivals list
 
@@ -239,7 +239,7 @@ Does not hit:               the wrong neighbour, and why the reader will reach f
 Open:                       what this card is unsure of
 ```
 
-`What points at it` is the only conditional field, and only a ghost card carries it. The pointer is the live half of a ghost and the thing the next reader actually encounters, so it does not belong buried inside `What it is`.
+`What points at it` is the only conditional field, and only a ghost card carries it. The pointer is the live half of a ghost and the thing the next reader actually encounters, so it does not belong buried inside `What it is` — or inside `Hits`, which is where it goes when it goes wrong. **A real ghost card that fails this way, with every fact in it correct, is at the end of `examples.md`. Read it before writing a ghost card.**
 
 `Open` is not optional and not a formality. It is where the map admits its own edges — an inferred claim, an unverified path, a reader you could not chase down. One line. A card with nothing open is usually a card that did not look.
 
