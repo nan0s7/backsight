@@ -172,88 +172,63 @@ The pipeline lives inside `rules.md` rather than in numbered stage folders, and 
 
 ## How it was tested
 
-### Walk 1 — a 459-line shell utility (published in `examples.md`)
+### Six territories
 
-A POSIX script driving GPU fan curves, written by the author in 2018. Dormant since a stranger's pull request merged in January 2023, and still working — which is the test Pass 0 applies, not recency. Public, so nothing is sanitised. Five cards, **86 non-blank lines against 459** — 19 per cent of the territory.
+| Territory | Shape | Size | Cards | Map |
+|---|---|---|---|---|
+| A GPU fan-curve utility | POSIX shell | 6 files, 459 lines | 5 | 86 lines — 19% |
+| A knowledge vault | prose, captures, conventions | 413 files | 4 | not published |
+| A colour-theming utility | three shell scripts | 3 files | 2 | not published |
+| An assessment tool | Python + React | 76 files | 1 | 21 lines |
+| A macOS app | Swift + SwiftPM | 123 files | 6 | 97 lines |
+| A constructed-language site | Docusaurus, 950 markdown | 1,038 files | 3 | **49 lines** |
 
-Small on purpose. A map earns nothing on a folder you can read in one sitting *unless* the folder misleads you, and this one does in three separate ways:
+Only the first is published, in `examples.md`. Two are the author's own, three are not, and the assessment tool was cloned at a pinned commit and never opened by hand — the only test of whether the rules survive ground with no memory attached.
 
-- **Two ghosts of different kinds.** A systemd unit launching a path the repo never creates, documented right up to the point where it would have to say what to do. And a hardware-simulation flag pointing at a sibling checkout, absent from the script's own help text and from both doc files — discoverable only by reading the `getopts` string.
-- **A documented function that does not exist.** `README.md:25` tells a reader without `procps` to comment out `check_already_running`. The function is `kill_already_running`.
-- **A seam that is not one.** Every hardware instruction routes through a single variable, which reads as an abstraction layer and is not — the nvidia-settings argument syntax is inline at all four call sites, and device detection recovers a count by string-stripping the tool's English output. Swapping the binary is one line; swapping the interface is four rewrites and a parser.
-- **A change that inverts the expected answer.** The rename-versus-systemd pair, worked through under **Wrong neighbour** above. It is the finding that made a six-file repo worth mapping at all.
+**The compression is the result.** Ninety-five per cent of a 1,038-file site fits in three cards, because the shelf a collaborator actually needs is not the 895 files: `static/words.csv` is the authoritative lexicon at 874 records, and `docs/words/` is a build product that `scripts/build.zx.mjs` deletes and regenerates. A correction typed into the shelf is gone on the next build. That is the kind of thing a directory listing cannot show anyone, and it is what the form is for.
 
-### Walk 2 — a 413-file knowledge vault (not published)
+### What repeated runs disagree about
 
-Run to check `rules.md` was not repo-shaped: prose, conventions and dated captures rather than code, mapped as the corpus a successor inherits.
+Eight consecutive runs were made against a copy of this folder that never received the rule changes being tested — a mistake that produced the only controlled measurement here. Same folder, same territory, same reader, eight times.
 
-The nouns came out completely different — a routing table, a status convention encoded by folder membership, a pair of byte-identical entry files with nothing keeping them in step. The rules transferred, which was the question.
+**The territory findings were identical every time**: the same five nouns, the same two ghosts, the same three collisions. What forked was the writing — one phrasing convention landed once in eight, another twice. **The runs disagree about the method, not about the place.**
 
-It also produced the sharpest single finding of the three walks. The territory encodes project status by which of four folders a file sits in; those four hold eleven files, while the named project folders beside them hold a hundred and five and carry no status at all. The convention governs a tenth of what its name implies.
+Where that leaves the rules is the useful part. Rules naming a mechanical, checkable output land immediately and hold. Rules about phrasing under judgement fork roughly half the time however they are worded, ordered or enforced — and adding enforcement did not move them.
 
-### Walk 3 — a second shell repo (not published)
+So the last rule added was written as an inventory line, with a prediction recorded in the commit before it was run: agent-instruction files — `CLAUDE.md`, `AGENTS.md`, `.cursorrules` — become candidate nouns by name, because they read as scaffolding and get skipped, and because a file called `CLAUDE.md` is read as addressed to the reader rather than as a claim to check. Two territories with known answers, both predicted, both confirmed:
 
-A three-script colour-theming utility. Used mainly to test whether the ghost rule generalised, and it is where that rule broke and had to be rewritten: a documented sibling checkout was carded as a ghost, and the card said in its own `Open` line that the rule looked wrong. It was. The rewritten rule is in `rules.md`, Pass 2, *A ghost is a claim the territory does not honour* — the test is now discoverability, not provenance.
+- **The macOS app** ships `AGENTS.md` and `CLAUDE.md` byte-identical at 216 lines, with no generator, link or test between them, and nothing in the repository referencing either name. Two names, one job, nothing keeping them in step.
+- **The assessment tool**'s entry file documents a Supabase database, a Redis queue and WebSocket streaming. A search of the backend and frontend for all three returns a comment saying job storage is in memory. Recorded, with the search, as out of scope rather than carded — the reader asked about providers.
 
-### Walk 4 — a third-party repo the author had never opened (not published)
+Both maps also came back *smaller* than the runs before them.
 
-A Python and React assessment tool, 76 tracked files, cloned at a pinned commit and never updated. **The only territory here that is not the author's own**, and so the only test of whether the rules survive ground with no memory attached. Walked four times as the rules changed. Two of the current rules came out of it, and the fourth walk is the closest thing in this project to a controlled experiment.
+### Three findings that changed the rules
 
-| Walk | Rules at the time | Cards | Result |
-|---|---|---|---|
-| 1 | before *card the change* | 5 | All correct, collectively unusable |
-| 2 | after it | 1 | First walk to stay inside its own budget here |
-| 3 | after entry-file diligence | 1 | Re-derived walk 2 independently, from the live files |
-| 4 | reader as a role, triangle cut | 2 | Two doors, each answerable alone |
+- **The ghost rule was wrong, and a card said so in its own `Open` line.** On the colour-theming utility, a documented sibling checkout was carded as a ghost. The test is now discoverability rather than provenance: a documented prerequisite is `live`, and its fragility belongs in `Hits`.
+- **A rule change moved a real finding from correctly-excluded to carded.** The assessment tool was walked four times as the rules changed. Under *one reader, one job* a false architecture claim in its entry file sat off the reader's path and was rightly left out. Under *the reader is a role* it is in scope, and the next walk carded it with the search behind it. Same territory, same question, same tool.
+- **The negative rule has now caught four defects, three of them in this folder's own maps.** You cannot cite an absence, so a negative must name where you looked. The sharpest catch: a card claimed `config` held no device setting, on the strength of a grep for interface words that never searched for topology words. `config:48` is the fan-to-GPU map. That answer had already reached a reader.
 
-Walk 1's five cards were each true, and no single one answered the question a reader actually arrived with — every front-door question was a sub-question of one job, so adding a provider meant opening all five. That is where *card the change, not the parts of the change* comes from. Walk 2 dropped to one card and found three things the five-card version had missed. Walk 3 re-derived walk 2's central finding before opening either prior catalog, and declined to card a false architecture claim in the entry file — correctly, as scope — which exposed a contradiction in that rule and got it fixed.
-
-**The fourth walk is why this section exists.** Walk 3 was right to leave the entry file's architecture claim uncarded: under *one reader, one job* it sat off the reader's path. Under *the reader is a role*, it is in scope — and walk 4 carded it as a ghost, with the search behind it. Same territory, same reader's question, same tool. The rule change moved a real finding from correctly-excluded to carded, and produced two cards behind two doors: neither the five-card mush nor the single card only one job could use.
-
-**Its claims were then checked against the source line by line. Six of seven verified exactly**, including the two hardest negatives — a helper that is imported and never called, appearing exactly twice in the whole territory, and a nine-term search of the backend for the documented database, queue and socket layers returning exactly one line, a comment. Pass 1's counting rule fired unprompted, refusing to call a nine-file directory nine providers when it holds a base contract, a factory and seven clients.
-
-**The seventh was false, and it is a regression against walk 3.** The catalog claimed a group of routes did not select or invoke a provider. One of them does — it accepts a provider name and a client is constructed from it downstream. Walk 3 had handled that corner correctly by naming it explicitly; walk 4 flattened it into a negative it had not searched for. It is the fourth defect the negative rule has caught, and the first inside a map built under the current rules.
-
-It also found where the rule did not reach. The same paragraph excluded another region *with* its search attached, one sentence later — so the discipline was live and simply did not cover this. Pass 3 is scoped to nouns that get cards, and Pass 5's negative check said *in every card*; the catalog is not a card, and its *What is not carded* list is nothing but negatives. Both now name the catalog explicitly. Two words and a clause, no new rule.
-
-Not published. The territory belongs to someone else and the findings read as defects; a map is not an audit, but that distinction is easier to hold when the code is your own.
-
-### Refusal test — passed on two territories
+### Refusal test — passed on three territories
 
 - **Pointed at this folder:** refused. A methodology folder is out of scope by `identity.md`.
+- **Pointed at a sibling method folder** — a diagnostician built to the same discipline: refused, naming the clause it failed and citing the two files that identify the territory as a methodology. No partial map and no offer to proceed.
 - **Pointed at a generated archive** — a folder of 138 markdown files, each one produced by a script from session logs that live elsewhere, overwritten whenever the script re-runs: refused at Pass 0 as a rendering. Changing those files does not change the system, and a reader acting on such a map would edit output that is regenerated on the next run.
 
-This second case is the one worth having. It sits *inside* the published territory, it looks exactly like mappable material, and the test that catches it is behavioural rather than cosmetic.
+The generated archive is the case worth having. It sits *inside* the published territory, it looks exactly like mappable material, and the test that catches it is behavioural rather than cosmetic.
 
-### Cold-read test, round 1 — the vault map, failed once then passed
+### Cold reads — the bar, and what failing it bought
 
-The bar: a fresh reader, given *only* `catalog.md` and one card, answers "what is this and what moves if I change it" and **stops without requesting more files**.
+The bar: a fresh reader, given *only* `catalog.md` and one card, answers "what is this and what moves if I change it" and **stops without requesting more files**. Four cold reads across two rounds, one pass and three failures. Every failure produced a deletion rather than an addition.
 
-**Run 1 failed.** On the walk-2 vault map, not the published one. Given its lifecycle card, the reader opened eleven further sources from the live territory and came back with a better answer than the card contained. It was right to: the card claimed nothing scanned a pair of folders, and something did. The claim had been false since the day it was written — nothing decayed, the survey never looked.
+- **A card claimed nothing scanned a pair of folders, and something did.** The reader opened eleven further sources and came back with a better answer than the card contained. It was right to. The claim had been false since the day it was written — nothing decayed, the survey never looked. Pass 3 now demands the same evidence for a negative as for a positive, and since you cannot cite an absence, it demands naming *where you looked*.
+- **The catalog header told the reader to go and verify.** *The file wins* sat four lines from the load budget and read as permission. It is precedence — who wins when a disagreement surfaces — not an errand, and it now says so.
+- **The load budget never named the territory.** It forbade plans, notes and issue threads *about* the place, which reads as leave to read the place itself.
+- **`see other-card.md` pointers inside `Does not hit` lines.** A reader treats a pointer as an instruction. Forbidden outright now, not discouraged.
+- **The triangle rule required the wrong neighbour to be carded so a reader could check it** — which is a second card, which is the failure the whole form exists to prevent. It was the only rule here pointed against the one rule. Cut, not patched.
 
-Two defects came out of that, and both are now closed:
+The passing read is worth as much. It stopped at a single card and gave its reason: the second *"would have bought confirmation, not information, at the cost of the stated budget."* The `Does not hit` line did that work — the question carried a false premise, and the wrong-neighbour line pre-empted it, which is why one card was enough.
 
-- **An unanchored negative.** `rules.md` demanded a named reader at a named path before writing `live`, and said nothing about the opposite claim. Pass 3 now requires the same evidence for a negative, and since you cannot cite an absence, it requires naming *where you looked*. Applying it did not merely rescue the claim — it produced a sharper one: the folder has exactly one scanning reader, and five other procedure files that name specific files inside it by path and would never see a new arrival.
-- **A catalog header that told the reader to go verify.** That instruction collided with the load budget, and the reader said so unprompted. It was never part of the discipline this map inherited — the rule is *precedence*, deciding who wins when a disagreement surfaces, not an errand. The header now states it that way.
-
-**Run 2 passed.** Same question, same fixture, fresh reader. It opened the catalog and one card, then stopped — and gave its reason: the second card *"would have bought confirmation, not information, at the cost of the stated budget."* It also declined to check the territory, noting the survey date and flagging the numbers as survey-day facts.
-
-The `Does not hit` line did the work. The question contains a false premise — that moving a file between status folders makes sessions treat it as active — and the wrong-neighbour line pre-empted it, which is why one card was enough.
-
-### Cold-read test, round 2 — failed twice on the recarved map
-
-Two fresh readers, neutral working directory, no instructions beyond a user's question and the path to the map. The territory was reachable, deliberately.
-
-**Both blew the budget.** One read the catalog, every card and four territory files; the other abandoned the map entirely and went to the process table. The first got the answer right — including the ghost — but only after reading everything, and it surfaced a `README.md:3` reference the card had missed. The file won; the card is fixed.
-
-Four causes, and the fix for three of them was to delete something:
-
-- **The budget never named the territory.** It forbade "plans, notes and issue threads about this territory" — a list of documents *about* the place, which reads as leave to read the place.
-- **"The file wins" sat four lines from the load budget and read as permission to verify.** Restated as precedence, with an explicit *this is not an errand*.
-- **`see other-card.md` pointers inside `Does not hit` lines.** A reader treats a pointer as an instruction. They are now forbidden outright rather than merely discouraged.
-- **The triangle rule required the wrong neighbour to be carded so the reader could check it** — which is a second card, which is the failure the whole form exists to prevent. It was the only rule here that worked against the one rule, and it is cut. A negative is verified by the search printed inside the card.
-
-### Cold-read test, round 3 — three runs on the five-card map
+### Where the load budget actually fails — three more cold reads
 
 Neutral working directory, fresh reader each time, the territory not mentioned. One run walked correctly — catalog, one card, no territory — and two did not. What they exposed is worth more than the score.
 
@@ -266,7 +241,7 @@ The honest reframe is that the budget is a discipline the map declares, not a fe
 - **A task-shaped question defeats it, and probably always will.** The catalog names *"find out what it did last night"* as an out-of-scope example. Asked exactly that, the reader went and found out — territory, process table, system log. A map cannot out-instruct the person asking it. The claim that it refuses tasks is now written as a limit below, not as a behaviour.
 - **The run that obeyed the budget gave a wrong answer, because a card was wrong.** Asked what to change for a second GPU, it answered from one card and said `config` was not involved. `config:48` is `fan2gpu`, the fan-to-GPU map, read at `temp.sh:174`. The card had asserted config held no device setting on the strength of a grep for interface words that never looked for topology words. An under-searched negative, propagated verbatim into user-facing advice. Corrected, and it is the third defect the negative rule has caught.
 
-**The map has not been re-run since that correction.** That is the honest state.
+**The published map has since been replaced by tool output.** Two runs of the current folder, in separate sessions, produced the same five cards, the same two ghosts and the same three collisions; `examples.md` and `nfancurve-map/` now carry that output verbatim rather than a hand-edited version of it. The reason is that runs copy this file — the second reproduced its front door character for character. A worked example the tool cannot itself produce sets a bar it will miss in front of a stranger.
 
 ### Slurp test — clean
 
@@ -276,9 +251,9 @@ The folder was searched for any instruction to load everything, read the whole m
 
 Stated plainly, because the limits are the point.
 
-- **The cold-read test passed on the second attempt, not the first.** The failure is written up in full under **round 1** above, and it is what produced the rule about negatives in `rules.md`. **n=1 on the passing run**, one question, one card. It has not been run across every card or every question shape.
-- **The published map has failed more cold reads than it has passed.** Five runs across rounds 2 and 3; one clean walk. Every failure is written up above with what it changed — the triangle rule is gone because of round 2, the budget sits first in the catalog because of round 3.
-- **The evidence base is five territories, and one of them was not the author's.** A third-party repo they had never opened, cloned at a pinned commit: two of the current rules came out of it, and its map was then checked against the source line by line — **six of seven claims verified exactly, and the seventh was false**, written up above as a regression. That is the sharpest measurement in this repo, and it is the one taken on ground with no memory attached. **What it is not is an independent operator.** Every walk was run by the author. That is a larger gap than the territory count, and it is not closed by adding more territories.
+- **The cold-read test passed on the second attempt, not the first.** The failure is written up in full under **Cold reads** above, and it is what produced the rule about negatives in `rules.md`. **n=1 on the passing run**, one question, one card. It has not been run across every card or every question shape.
+- **The published map has failed more cold reads than it has passed.** Seven runs, two clean walks. Every failure is written up above with what it changed — the triangle rule is gone because a reader was sent to a second card to check a negative, and the load budget sits first in the catalog because three readers swept the folder before reading a word of it.
+- **The evidence base is six territories, and three of them were not the author's.** The most-walked of those is a third-party repo cloned at a pinned commit and never opened by hand: two of the current rules came out of it, and its map was then checked against the source line by line — **six of seven claims verified exactly, and the seventh was false**, written up above as a regression. That is the sharpest measurement in this repo, and it is the one taken on ground with no memory attached. **What it is not is an independent operator.** Every walk was run by the author. That is a larger gap than the territory count, and it is not closed by adding more territories.
 - **This is a map, not an assistant, and it cannot enforce that.** It answers *what is here* and *what moves if I change it*. Asked instead to get something working, it is the wrong instrument — but saying so in the catalog does not stop a reader, and testing showed it does not: given a task the catalog names as out of scope, the reader did the task. Treat the boundary as a description of what the map is good for, not a refusal it can make stick.
 - **The folder is better evidenced than its output.** Maps produced by this method have been checked closely; whether those maps then get *used well* rests on a handful of sessions. One walked cleanly. One found no matching card and read a second card hoping. One drifted outward into the author's own planning notes. The last two were caused by gaps since closed — a catalog that never said what it had left out, and a load budget bounded only against reading more cards — but the usage record is thin and is not improved by asserting otherwise.
 - **`Open` lines are only as honest as the cartographer writing them.** Nothing in the method forces an uncertainty to be noticed — the line is required, but a confident wrong card will fill it confidently.
