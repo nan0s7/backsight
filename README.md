@@ -2,7 +2,7 @@
 
 A folder-based cartographer that walks a body of work still in force, and leaves behind a **catalog and a small set of cards** that a later reader can enter at one point, answer one question, and leave.
 
-*A backsight is the reading a surveyor takes back to an already-established point, to orient themselves before measuring anything new. One sighting against something known, then you proceed. That is what this leaves behind, and it is the whole budget: the catalog, then one card, then go.*
+*A backsight is the reading a surveyor takes back to an already-established point, to orient themselves before measuring anything new. One sighting against something known, then you proceed.*
 
 That later reader is usually **a model with no memory of the place**. It cannot ask a follow-up. It will believe what the map says. The whole design follows from that.
 
@@ -17,7 +17,7 @@ A map you have to read whole is a folder with extra steps, and it costs more tha
 ## How to use it
 
 1. **Drop this folder into a Claude project.** You need `identity.md`, `rules.md`, `examples.md` and `reference/`. Leave out `README.md`, `LICENSE` and `nfancurve-map/` — nothing in the procedure reads them.
-2. **Give it a path and a reader.** *"Map `~/code/thing` for the next developer, who has never seen it."* Both are required. The path must be a folder-based body of work where the files *are* the system — a repo, a knowledge vault, a client delivery folder, an SOP pack. The reader is a role, not a task; without one it cannot judge what is worth carding, and defaults to carding the folder structure, which is a directory listing with confidence added.
+2. **Give it a path and a reader.** *"Map `~/code/thing` for the next developer, who has never seen it."* Both are required. The path must be a folder where the files *are* the system — a repo, a knowledge vault, a client delivery folder, an SOP pack. The reader is a role, not a task; without one it cannot judge what is worth carding, and defaults to carding the folder structure, which is a directory listing with confidence added.
 3. **You don't need to say where the map goes.** It writes a sibling folder next to the territory — point it at `~/code/thing` and you get `~/code/thing-map/`. Name a location only if you want a different one.
 4. **Read what comes back the way it tells you to:** the catalog, then one card — and walk it from a neutral working directory. A session started inside a folder with its own `CLAUDE.md`, `AGENTS.md` or routing table loads those before it ever opens the catalog, and then it is walking the map with the territory's own instructions already in context. This has been observed, not theorised.
 
@@ -60,8 +60,6 @@ Refusal is a successful outcome here, not a failure to try.
 - **Territories it cannot gather evidence in.** If it can see names but cannot establish readers, it says what it would need rather than producing a listing with statuses guessed on top.
 
 ## The words it uses
-
-Not standard vocabulary, so they are defined once.
 
 **Territory** — the body of work being mapped. A folder where the files *are* the system, not a folder that describes one.
 
@@ -107,7 +105,7 @@ Ghosts are the payload. A ghost card is built around **what points at it**, beca
 
 `identity.md` hands off to `rules.md`, which opens with an Inputs table calling `examples.md` and the three reference files at the passes shown. A reference file nothing calls is either dead or a missing step in the procedure.
 
-**`identity.md` and `rules.md` are authoritative.** Where this page restates them it is summarising for orientation; if they disagree with this page, they win and this page is the bug.
+**`identity.md` and `rules.md` are authoritative.** If they disagree with this page, they win and this page is the bug.
 
 ## The method
 
@@ -130,7 +128,7 @@ The pipeline lives inside `rules.md` rather than in numbered stage folders, and 
 
 Only the first is published, in `examples.md`. Two are the author's own, three are not, and the assessment tool was cloned at a pinned commit and never opened by hand.
 
-**Compression is the result.** Ninety-five per cent of a 1,038-file site fits in three cards, because the shelf a collaborator actually needs is not the 895 files: `static/words.csv` is the authoritative lexicon, and `docs/words/` is a build product the build script deletes and regenerates. A correction typed into the shelf is gone on the next build. That is what a directory listing cannot show anyone.
+**Compression is the result.** Ninety-five per cent of a 1,038-file site fits in three cards, because the shelf a collaborator actually needs is not the 895 files: `static/words.csv` is the authoritative lexicon, and `docs/words/` is a build product the build script deletes and regenerates. A correction typed into the shelf is gone on the next build.
 
 **Repeatability: the place, not the writing.** Eight consecutive runs against a frozen copy — same folder, same territory, same reader — produced identical territory findings every time: the same five nouns, the same two ghosts, the same three collisions. What forked was the phrasing. Rules naming a mechanical, checkable output land immediately and hold; rules about phrasing under judgement fork about half the time however they are worded, and enforcement did not move them.
 
@@ -138,14 +136,13 @@ Only the first is published, in `examples.md`. Two are the author's own, three a
 
 **Refusals: three territories, three refusals.** Pointed at itself, at a sibling method folder, and at a generated archive of 138 markdown files produced by a script from logs living elsewhere. The archive is the case worth having: it sits inside the published territory, it looks exactly like mappable material, and the test that catches it is behavioural — changing those files does not change the system.
 
-**The published map is tool output, not hand-written.** Two runs of the current folder, in separate sessions, produced the same five cards, the same two ghosts and the same three collisions; `examples.md` and `nfancurve-map/` carry that output verbatim. A worked example the tool cannot itself produce sets a bar it will miss in front of a stranger.
+**The published map is tool output, not hand-written.** Two runs of the current folder, in separate sessions, produced the same map; `examples.md` and `nfancurve-map/` carry that output verbatim. A worked example the tool cannot itself produce sets a bar it will miss in front of a stranger.
 
 ## What it cannot know
 
 - **A `live` status is a claim about the day it was written.** The catalog carries that date. Nothing re-verifies it afterward — re-running the cartographer is the maintenance path.
-- **`Hits` is first-order only, by design.** Deeper waterfalls are guesses dressed as maps. It will understate the blast radius of a large change.
+- **`Hits` is first-order only, by design.** It will understate the blast radius of a large change.
 - **It cannot map what it cannot read.** Binaries, encrypted stores, and anything behind an API are invisible.
-- **A map is not an audit.** It says what is there, not whether it is any good. If you want to know why something failed, this is the wrong instrument.
 - **It is a map, not an assistant, and it cannot enforce that.** Given a task the catalog names as out of scope, a tested reader did the task anyway. Treat the boundary as a description of what the map is good for, not a refusal it can make stick.
 - **The load budget is a discipline the map declares, not a fence it enforces.** It is stated inside `catalog.md`, which you can only reach by an action that may already have violated it. The map's real protection is being small.
 - **`Open` lines are only as honest as the cartographer writing them.** Nothing forces an uncertainty to be noticed — a confident wrong card will fill the line confidently.
