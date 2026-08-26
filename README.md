@@ -12,16 +12,14 @@ It tells you **what the nouns are, how they move, what else moves if you touch o
 
 **Load the catalog, then one card. Never the whole `objects/` folder.**
 
-This is the rule the produced map states about itself, and it is the reason the form exists. A map you have to read whole is a folder with extra steps, and it costs more than the territory it was supposed to save you from reading.
-
-Both humans and models, handed a folder of small tidy files, will read all of them. So the budget is written into the catalog as an instruction, not left as an assumption.
+A map you have to read whole is a folder with extra steps, and it costs more than the territory it was supposed to save you from reading. The produced catalog states this budget itself, as its first line, because both humans and models handed a folder of small tidy files will read all of them.
 
 ## How to use it
 
 1. **Drop this folder into a Claude project.** You need `identity.md`, `rules.md`, `examples.md` and `reference/`. Leave out `README.md`, `LICENSE` and `nfancurve-map/` — nothing in the procedure reads them.
 2. **Give it a path and a reader.** *"Map `~/code/thing` for the next developer, who has never seen it."* Both are required. The path must be a folder-based body of work where the files *are* the system — a repo, a knowledge vault, a client delivery folder, an SOP pack. The reader is a role, not a task; without one it cannot judge what is worth carding, and defaults to carding the folder structure, which is a directory listing with confidence added.
 3. **You don't need to say where the map goes.** It writes a sibling folder next to the territory — point it at `~/code/thing` and you get `~/code/thing-map/`. Name a location only if you want a different one.
-4. **Read what comes back the way it tells you to:** the catalog, then one card.
+4. **Read what comes back the way it tells you to:** the catalog, then one card — and walk it from a neutral working directory. A session started inside a folder with its own `CLAUDE.md`, `AGENTS.md` or routing table loads those before it ever opens the catalog, and then it is walking the map with the territory's own instructions already in context. This has been observed, not theorised.
 
 Step 2 as one message, if you want something to paste:
 
@@ -52,18 +50,6 @@ Open:                       what this card is unsure of
 ```
 
 **`Does not hit` is required.** A card without one is a glossary entry and does not ship. `Open` is also required — it costs one line, and it is the only place the map admits what the survey was unsure of, which a reader who cannot ask a follow-up has no other way to learn.
-
-## How a cold model should walk it
-
-```
-catalog (front door)  ->  one card  ->  stop
-```
-
-**Two reads, and stopping is a step.** The front door is a section of the catalog, not a separate file.
-
-**If the question matches no card: say so and stop.** Do not read more cards hoping one becomes relevant, and do not assemble an answer from two cards about neighbouring things — that is a guess with citations attached, and at the point of use it is indistinguishable from a real answer.
-
-**Walk it from a neutral working directory.** A session started inside a folder with its own `CLAUDE.md`, `AGENTS.md` or routing table loads those before it ever opens the catalog, and then it is walking the map with the territory's own instructions already in context. This has been observed, not theorised.
 
 ## What it refuses
 
